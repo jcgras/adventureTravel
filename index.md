@@ -32,9 +32,9 @@ Install for iOs / install for Android
 
 ## Configuration
 
-If you need to use enviroment variables like URLs, API keys, usernames, passwords or any other parameter, we include in the project the .env file to store it. We use the `react-native-dotenv` [package](https://www.npmjs.com/package/react-native-dotenv) to import the configuration variables from a .env file. If you need to use the Google Map Service, for example, you must to include the `GOOGLE_MAPS_API_KEY` variable with the API key value. (_You can see how to get a Google Maps API key from this [link](https://developers.google.com/maps/documentation/embed/get-api-key)._)
+If you need to use enviroment variables like URLs, API keys, usernames, passwords or any other parameter, we include in the project the `.env` file to store it. We use the `react-native-dotenv` [package](https://www.npmjs.com/package/react-native-dotenv) to import the configuration variables from a .env file. If you need to use the Google Map Service, for example, you must to include the `GOOGLE_MAPS_API_KEY` variable with the API key value. (_You can see how to get a Google Maps API key from this [link](https://developers.google.com/maps/documentation/embed/get-api-key)._)
 
-#### **`/.env`**
+##### **`/.env`**
 ``` js
 GOOGLE_MAPS_API_KEY=YourApiKeyValueHere
 ANOTHER_CONFIG=true
@@ -56,7 +56,7 @@ React's ecosystem offers users complete control over everything, without being t
 In the project source (on the `src` folder) we have the main folders where all the elements of the application are organized.
 
 Folder | Description
----------|----------|---------
+---------|----------
  `common` | It contains the common elements such as global styles, colors, utils, etc.
  `components` | components
  `images` | It contains the static images used in the project such as illustrations, logos, etc.
@@ -70,7 +70,7 @@ You have probably noticed that in each of these folders the files `index.js` and
 
 In the `index.js` file we must include all the module reference (imports) and then export it to make it visible outside the folder.
 
-#### **`/src/common/index.js`**
+##### **`/src/common/index.js`**
 ``` js
 import Styles from "./Styles";
 import Color from "./Color";
@@ -83,7 +83,7 @@ export { Styles, Color, Device, Images, Coordinates, Util }
 ```
 Also using the `package.json` file we can define the name of the package as global and use it anywhere in the project.
 
-#### **`/src/common/package.json`**
+##### **`/src/common/package.json`**
 ``` json
 {
   "name": "@common"
@@ -104,7 +104,7 @@ Following these principles we have included a file (`/src/common/Images.js`) in 
 
 ![Image](/images/imageReference.png)
 
-#### **`/src/common/Images.js`**
+##### **`/src/common/Images.js`**
 ``` js
 export default {
     logoWhite: require("@images/logos/logoWhite.png"),
