@@ -98,9 +98,9 @@ import { Color } from "@common";
 const primaryColor = Color.primary;
 ```
 
-### Static image folder
+### One place for static images
 
-Following these principles we have included a file (`/src/common/Images.js`) in the `@common` module to export the reference of images, illustrations and static logos of the application.
+In any mobile application project it is necessary to use static image files (embedded in the app) instead of always downloading them from the Internet. This applies mainly for image files such as illustrations, logos, icons, etc. For this reason we have included a single folder to store all the embedded image files, located in the path: `/src/images`. We have included also the `Images.js` file in the `@common` module to export the reference of all the static images, located in the images folder.
 
 ![Image](/images/imageReference.png)
 
@@ -111,7 +111,7 @@ export default {
     IllustSettings: require("@images/illustrations/settings.png"),
 }
 ```
-So when you need to use a static image just reference `Images` from the `@common` module.
+Whenever you need to use a static image just reference `Images` from the `@common` module.
 
 ``` js
 import { Images } from "@common";
