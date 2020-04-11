@@ -22,7 +22,7 @@ Try a demo App, avalilable download on Appstore and Google Play:
 
 Purchase or more info | [Adventure Travel](https://1.envato.market/xxxx)
 ---------|----------
-Documentation | https://docs.svalbard.dev
+Documentation | [https://docs.svalbard.dev](https://docs.svalbard.dev)
 iOS demo | 	https://itunes.apple.com/in/app/adventureTravel/id999999999
 Android demo | https://play.google.com/store/apps/details?id=com.svalvard.adventureTravel
 
@@ -49,7 +49,7 @@ If you have a separate development and production environment, that requires dif
 
 > A structure must be simple enough for new team members to quickly get on board and immerse themselves into the project.
 
-React's ecosystem offers users complete control over everything, without being tied to any particular way of doing things. However, whenever we work on a React project it is necessary to use some kind of consensus to organize the source code. With this in mind, we believe that the ideal React project structure is the one that allows you to move around your code with the least amount of effort. Following this principle, **Adventure Travel** is made up of a simple project structure that allows you to easily scalate, adapt, reuse and create React Native components. In any case, you are welcome to adjust it for your own use case.
+React’s ecosystem offers users complete control over everything, without being tied to any particular way of doing things. However, whenever we work on a React project it is necessary to use some kind of consensus to organize the source code. With this in mind, we believe that the ideal React project structure is the one that allows you to move around your code with the least amount of effort. Following this principle, **Adventure Travel** is made up of a simple project structure that allows you to easily scalate, adapt, reuse and create React Native components. In any case, you are welcome to adjust it for your own use case.
 
 ### Application modules
 
@@ -125,12 +125,80 @@ render() {
 }
 ```
 
-## We use Redux
+## Redux, one state to rule them all
 
-Application state management
+> Redux handles the entire application data flow within a single container while the previous state persists as well.
 
-redux-thunk — Enabling asynchronous dispatching of actions
-Redux Thunk middleware allows you to write action creators that return a function instead of an action. The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met. The inner function receives the store methods dispatch and getState as parameters.
+As an important part of our architecture, we include Redux for application status management. With Redux we can have one place for all application statuses ("Single source of truth"), that includes all application data (like bookings, bookmarks) but also temporary statuses like search results, search history or popular destinations.
+
+| ![Image](/images/redux_states.png) | 
+|:--:| 
+| *Tree view from [React Native Debugger](https://github.com/jhen0409/react-native-debugger)* |
+
+To use this library (actually Redux is a library) a `redux` module was created that includes the `actions` and `reducers` folders and the `store.js` file. Following the same logic as above, we have also included the `package.json` file for the module name.
+
+![Image](/images/redux_module.png)
+
+### Actions
+
+The whole state of the app is stored in an object tree inside a single store. The only way to change the state tree is to emit an action, an object describing what happened. ([Redux Documentation](https://redux.js.org/introduction/getting-started))
+
+Following this principle, the `actions` folder has been created as a container for the action files of each data object. For example, we have included the `bookmarks.js` file for all actions that manage bookmarks objects (saved items). Inside this file we can find a set of functions (Action Creators) to manage each action, for example, adding a new bookmark. So actions are the information (Objects) and action creator are functions that return these actions.
+
+##### **`/src/redux/actions/bookmarks.js`**
+``` js
+const addBookmark = bookmark => {
+    return {
+        type: "ADD_BOOKMARK",
+        payload: bookmark
+    }
+}
+
+// .......
+
+export {
+    // .......
+    addBookmark
+};
+```
+
+### Reducers
+
+Actions only tell what to do, but they don’t tell how to do, so reducers are the pure functions that take the current state and action and return the new state and tell the store how to do. To summarize, the reducers specify how the actions transform the state tree. We have included the `reducers` folder to group the reducers of each object.
+
+##### **`/src/redux/reducers/bookmarks.js`**
+``` js
+const defaultState = [];
+
+function reducer(state = defaultState, { type, payload }) {
+    switch (type) {
+        case "SET_BOOKMARKS": {
+            return payload;
+        }
+        case "ADD_BOOKMARK": {
+            return [...state, payload];
+        }
+        case "DELETE_BOOKMARK": {
+            return state.filter(b => b.id !== payload);
+        }
+        case "CLEAR_BOOKMARKS": {
+            return defaultState;
+        }
+        default:
+            return state;
+    }
+}
+
+export default reducer;
+```
+
+
+-----
+With the help of `redux-thunk` middleware we can enable the asynchronous dispatching of actions. That means 
+
+> Redux Thunk middleware allows you to write action creators that return a function instead of an action. The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met. The inner function receives the store methods dispatch and getState as parameters.
+
+
 
 ## Components
 
@@ -139,12 +207,12 @@ With **Adventure Travel** you have a variety ready-to-use components to create a
 Uso de PropTypes para validaciones, uso de StyleSheet dentro de archivo de componente. Crear archivos package.json y index para incluir archivos a exportar y rehusar. 
 To avoid having to import components like this
 
-import { TinyButton } from ‘./TinyButton/TinyButton'
+import { TinyButton } from './TinyButton/TinyButton'
 
 make an index.js in that components folder which export the named component.
 
 // components/TinyButton/index.js
-export * from ‘./TinyButton'
+export * from './TinyButton'
 
 Component’s file name should be in Pascal Case.
 Component names should be like TabSwitcher and not like tabSwitcher, tab-switcher etc. Also no other type of file should be in Pascal Case. This way when we see a filename in Pascal Case, it is immediately clear that the file is a react component.
