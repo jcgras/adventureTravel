@@ -129,7 +129,7 @@ render() {
 
 > Redux handles the entire application data flow within a single container while the previous state persists as well.
 
-As an important part of our architecture, we include Redux for application status management. With Redux we can have one place for all application statuses ("Single source of truth"), that includes all application data (like bookings, bookmarks) but also temporary statuses like search results, search history or popular destinations.
+As an important part of our architecture, we include Redux for application status management. With Redux we can have one application state as a global state ("Single source of truth"), that includes all application data -like bookings and bookmarks- but also temporary states like search results, search history or popular destinations.
 
 | ![Image](/images/redux_states.png) | 
 |:--:| 
@@ -192,11 +192,59 @@ function reducer(state = defaultState, { type, payload }) {
 export default reducer;
 ```
 
+### Store
 
------
-With the help of `redux-thunk` middleware we can enable the asynchronous dispatching of actions. That means 
+Basically the store is the object which holds the state of the application. We have created the `store.js` file to include the single store for the entire application, as recommended by the Redux documentation:
+>It's important to note that you'll only have a single store in a Redux application. When you want to split your data handling logic, you'll use reducer composition instead of many stores. ([Redux Documentation](https://redux.js.org/basics/store))
 
-> Redux Thunk middleware allows you to write action creators that return a function instead of an action. The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met. The inner function receives the store methods dispatch and getState as parameters.
+To start using the store instance you just need to import and call `createStore`.
+
+``` js
+import { createStore } from 'redux'
+import todoApp from './reducers'
+
+const store = createStore(todoApp)
+```
+
+But in our case we use multiple reducers and it is necessary to include the `combineReducers()` function to combine several reducers into one.
+
+``` js
+import { createStore, combineReducers } from "redux";
+// ...
+import searchHistory from "./reducers/searchHistory";
+import bookmarks from "./reducers/bookmarks";
+import bookings from "./reducers/bookings";
+
+const reducer = combineReducers({
+    // ...
+    searchHistory,
+    bookmarks,
+    bookings
+});
+```
+
+We also use `Redux-Persist` to save the Redux store when the app is closed and `Redux-Thunk` middleware to write action creators that return a function instead of an action. This last element is the one that allows us to create actions such as `addBookmark` in the form of functions.
+
+##### **`/src/redux/store.js`**
+``` js
+const persistConfig = {
+    key: "root",
+    storage: AsyncStorage,
+    whitelist: ["user", "explore", "categories", "popular", "searchHistory", "bookmarks", "bookings", "config"],
+    blacklist: []
+};
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk)));
+let persistor = persistStore(store);
+
+export { persistor, store };
+```
+
+
+### Conectors
 
 
 
