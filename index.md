@@ -208,6 +208,7 @@ const store = createStore(todoApp)
 
 But in our case we use multiple reducers and it is necessary to include the `combineReducers()` function to combine several reducers into one.
 
+##### **`/src/redux/store.js`**
 ``` js
 import { createStore, combineReducers } from "redux";
 // ...
@@ -223,7 +224,7 @@ const reducer = combineReducers({
 });
 ```
 
-We also use `Redux-Persist` to save the Redux store when the app is closed and `Redux-Thunk` middleware to write action creators that return a function instead of an action. This last element is the one that allows us to create actions such as `addBookmark` in the form of functions.
+We also use `Redux-Persist` to save the Redux store when the app is closed and `Redux-Thunk` middleware to write Action Creators that return a function instead of an action. This last element is the one that allows us to create actions such as `addBookmark` as functions.
 
 ##### **`/src/redux/store.js`**
 ``` js
