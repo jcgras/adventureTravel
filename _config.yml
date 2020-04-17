@@ -9,7 +9,12 @@ aux_links:
     - "//github.com/pmarsceill/just-the-docs"
 # Main navigation
 layout: default
-title: Documentation
+title: Adventure Travel
 has_toc: true
+# Enable or disable the site search
+# Supports true (default) or false
+search_enabled: true
+# Enable support for hyphenated search words:
+search_tokenizer_separator: /[\s/]+/
 # Footer content appears at the bottom of every page's main content
 footer_content: "Copyright &copy; 2020 Svalbard. Distributed by an <a href=\"https://github.com/pmarsceill/just-the-docs/tree/master/LICENSE.txt\">MIT license.</a>"
