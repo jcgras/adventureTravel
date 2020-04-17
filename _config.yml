@@ -1,2 +1,3 @@
-#theme: jekyll-theme-leap-day
-remote_theme: aksakalli/jekyll-doc-theme@gh-pages
+# Build settings
+markdown: kramdown
+remote_theme: benbalter/retlab
