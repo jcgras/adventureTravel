@@ -1,7 +1,7 @@
 # Build settings
 markdown: kramdown
 theme: just-the-docs
-#remote_theme: pmarsceill/just-the-docs
+remote_theme: pmarsceill/just-the-docs
 heading_anchors: true
 # Aux links for the upper right navigation
 aux_links:
