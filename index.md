@@ -2,25 +2,17 @@
 layout: default
 title: Navigation Structure
 nav_order: 5
+has_toc: true
 ---
-# Navigation Structure
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
 # Adventure Travel - React Native Template
-{:toc}
+{: .no_toc }
 
 With **Adventure Travel** template we want to offert more than a set of components and styles. We have carefully created a project where we aim to provide a simple structure for any kind of React Native project, allowing you to adapt, reuse and create react native components easily.
 
 For this project we have been inspired by a travel agency, however, we intend that this template can also be used in a wide range of businesses. If you had a web page for your business, **Adventure Travel** supports you to convert/extend your current websites to mobile app efficiently.
 
-### What do we support in general?
-{:toc}
+## What do we support in general?
+{: .no_toc }
 
 - Support for iOs and Android
 - React Native with JSX
@@ -33,7 +25,7 @@ For this project we have been inspired by a travel agency, however, we intend th
 - Flexible variable uses via config file
 
 ## Reference links
-{:toc}
+{: .no_toc }
 
 Try a demo App, avalilable download on Appstore and Google Play:
 
@@ -43,22 +35,34 @@ Documentation | [https://docs.svalbard.dev](https://docs.svalbard.dev)
 iOS demo | 	https://itunes.apple.com/in/app/adventureTravel/id999999999
 Android demo | https://play.google.com/store/apps/details?id=com.svalvard.adventureTravel
 
+# Navigation Structure
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 ## Quick start
 {:toc}
 
 Install for iOs / install for Android
 
+---
 ## Backend configuration
 {:toc}
 
 Firebase configuration.
 
+---
 ## App configuration
 {:toc}
 
 If you need to use enviroment variables like URLs, API keys, usernames, passwords or any other parameter in your app, we include in the project the `.env` file to store it. We use the `react-native-dotenv` [package](https://www.npmjs.com/package/react-native-dotenv) to import the configuration variables from a `.env` file. If you need to use the Google Map Service, for example, you must to include the `GOOGLE_MAPS_API_KEY` variable with the API key value. (_You can see how to get a Google Maps API key from this [link](https://developers.google.com/maps/documentation/embed/get-api-key)._)
 
-##### **`/.env`**
+_/.env_
 ``` js
 GOOGLE_MAPS_API_KEY=YourApiKeyValueHere
 ANOTHER_CONFIG=true
@@ -69,6 +73,7 @@ import { GOOGLE_MAPS_API_KEY, ANOTHER_CONFIG } from 'react-native-dotenv';
 ```
 If you have a separate development and production environment, that requires different configuration variables, you can use an `.env` file for the development/test environment variables and another `.env.production` file for the production environment variables.
 
+---
 ## Project structure
 {:toc}
 
@@ -83,12 +88,12 @@ In the project source (on the `src` folder) we have the main folders where all t
 
 Folder | Description
 ---------|----------
- `common` | It contains the common elements such as global styles, colors, utils, etc.
- `components` | components
- `images` | It contains the static images used in the project such as illustrations, logos, etc.
- `navigation` | navigation
- `redux` | redux
- `screens` | screens
+ _common_ | It contains the common elements such as global styles, colors, utils, etc.
+ _components_ | components
+ _images_ | It contains the static images used in the project such as illustrations, logos, etc.
+ _navigation_ | navigation
+ _redux_ | redux
+ _screens_ | screens
 
 You have probably noticed that in each of these folders the files `index.js` and `package.json` are included. Both files are used to export and define the module with global access within the project.
 
@@ -96,7 +101,7 @@ You have probably noticed that in each of these folders the files `index.js` and
 
 In the `index.js` file we must include all the module reference (imports) and then export it to make it visible outside the folder.
 
-##### **`/src/common/index.js`**
+_/src/common/index.js_
 ``` js
 import Styles from "./Styles";
 import Color from "./Color";
@@ -109,7 +114,7 @@ export { Styles, Color, Device, Images, Coordinates, Util }
 ```
 Also using the `package.json` file we can define the name of the package as global and use it anywhere in the project.
 
-##### **`/src/common/package.json`**
+_/src/common/package.json_
 ``` json
 {
   "name": "@common"
@@ -131,7 +136,7 @@ In any mobile application project it is necessary to use static image files (emb
 
 ![Image](/images/imageReference.png)
 
-##### **`/src/common/Images.js`**
+_/src/common/Images.js_
 ``` js
 export default {
     logoWhite: require("@images/logos/logoWhite.png"),
@@ -151,7 +156,7 @@ render() {
     );
 }
 ```
-
+---
 ## Redux, one state to rule them all
 {:toc}
 
@@ -159,9 +164,16 @@ render() {
 
 As an important part of our architecture, we include Redux for application status management. With Redux we can have one application state as a global state ("Single source of truth"), that includes all application data -like bookings and bookmarks- but also temporary states like search results, search history or popular destinations.
 
-| ![Image](/images/redux_states.png) | 
+<!-- | ![Image](/images/redux_states.png) | 
 |:--:| 
-| *Tree view from [React Native Debugger](https://github.com/jhen0409/react-native-debugger)* |
+| *Tree view from [React Native Debugger](https://github.com/jhen0409/react-native-debugger)* | -->
+
+<div class="code-example" markdown="1">
+
+![Image](/images/redux_states.png)
+
+_Tree view from [React Native Debugger](https://github.com/jhen0409/react-native-debugger)_
+</div>
 
 To use this library (actually Redux is a library) a `redux` module was created that includes the `actions` and `reducers` folders and the `store.js` file. Following the same logic as above, we have also included the `package.json` file for the module name.
 
@@ -174,7 +186,7 @@ The whole state of the app is stored in an object tree inside a single store. Th
 
 Following this principle, the `actions` folder has been created as a container for the action files of each data object. For example, we have included the `bookmarks.js` file for all actions that manage bookmarks objects (saved items). Inside this file we can find a set of functions (Action Creators) to manage each action, for example, adding a new bookmark. So actions are the information (Objects) and action creator are functions that return these actions.
 
-##### **`/src/redux/actions/bookmarks.js`**
+_/src/redux/actions/bookmarks.js_
 ``` js
 const addBookmark = bookmark => {
     return {
@@ -196,7 +208,7 @@ export {
 
 Actions only tell what to do, but they don’t tell how to do, so reducers are the pure functions that take the current state and action and return the new state and tell the store how to do. To summarize, the reducers specify how the actions transform the state tree. We have included the `reducers` folder to group the reducers of each object.
 
-##### **`/src/redux/reducers/bookmarks.js`**
+_/src/redux/reducers/bookmarks.js_
 ``` js
 const defaultState = [];
 
@@ -239,7 +251,7 @@ const store = createStore(todoApp)
 
 But in our case we use multiple reducers and it is necessary to include the `combineReducers()` function to combine several reducers into one.
 
-##### **`/src/redux/store.js`**
+_/src/redux/store.js_
 ``` js
 import { createStore, combineReducers } from "redux";
 // ...
@@ -257,7 +269,7 @@ const reducer = combineReducers({
 
 We also use `Redux-Persist` to save the Redux store when the app is closed and `Redux-Thunk` middleware to write Action Creators that return a function instead of an action. This last element is the one that allows us to create actions such as `addBookmark` as functions.
 
-##### **`/src/redux/store.js`**
+_/src/redux/store.js_
 ``` js
 const persistConfig = {
     key: "root",
@@ -277,6 +289,7 @@ export { persistor, store };
 
 How the store is connected to the UI is specified below.
 
+---
 ## Components
 {:toc}
 
@@ -284,7 +297,7 @@ As you probably know, React bases its architecture on components. That is: each 
 
 Basically each component extends from `React.PureComponent` and implements a `render()` method where the UI is returned in `jsx` format.
 
-##### **`/src/components/ButtonBookmark/index.js`**
+_/src/components/ButtonBookmark/index.js_
 ```js
 import React from "react";
 
@@ -331,7 +344,7 @@ import { connect } from "react-redux";
 
 Then we must create the `mapStateToProps` object to specify the properties we want to use from the global state and the `mapDispatchToProps` object to link the imported functions that act on the global state. We can then invoke the `connect` function using these objects as parameters and connect the component (`ButtonBookmark` in this example) to export it. This way you can access the declared properties to read the global state values and the functions to modify the global state.
 
-##### **`/src/components/ButtonBookmark/index.js`**
+_/src/components/ButtonBookmark/index.js_
 ```js
 import React from "react";
 import { addBookmark, deleteBookmark } from "@redux/actions/bookmarks";
@@ -384,7 +397,7 @@ removeBookmark = () => {
     this.props.deleteBookmark(this.props.experienceId)
 }
 ```
-
+---
 ## Screens/Pages
 {:toc}
 
