@@ -296,7 +296,7 @@ import { addBookmark, deleteBookmark } from "@redux/actions/bookmarks";
 import { connect } from "react-redux";
 ```
 
-Then we must create the `mapSateToProps` object to specify the properties we want to use from the global state and the `mapDispatchToProps` object to link the imported functions that act on the global state. We can then invoke the `connect` function using these objects as parameters and connect the component (`ButtonBookmark` in this example) to export it. This way you can access the declared properties to read the global state values and the functions to modify the global state.
+Then we must create the `mapStateToProps` object to specify the properties we want to use from the global state and the `mapDispatchToProps` object to link the imported functions that act on the global state. We can then invoke the `connect` function using these objects as parameters and connect the component (`ButtonBookmark` in this example) to export it. This way you can access the declared properties to read the global state values and the functions to modify the global state.
 
 ##### **`/src/components/ButtonBookmark/index.js`**
 ```js
@@ -308,7 +308,7 @@ class ButtonBookmark extends React.PureComponent {
     // ...
 }
 
-const mapSateToProps = state => {
+const mapStateToProps = state => {
     return {
         bookmarks: state.bookmarks,
         experiences: state.explore.experienceResults.experiences
@@ -320,12 +320,12 @@ const mapDispatchToProps = {
     deleteBookmark
 };
 
-export default connect(mapSateToProps, mapDispatchToProps)(ButtonBookmark);
+export default connect(mapStateToProps, mapDispatchToProps)(ButtonBookmark);
 ```
 
 Now within the functions of the component it is possible to access as a property to the global state of `bookmarks` (`this.props.bookmarks`) or `experiences` (`this.props.experiences`). Similarly, the functions `this.props.addBookmark` and `this.props.deleteBookmark` can be accessed as properties.
 
-```js
+```JSX
 render() {
     const booked = this.props.bookmarks.some(b => b.id == this.props.experienceId);
     return (
