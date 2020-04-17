@@ -253,7 +253,7 @@ As you probably know, React bases its architecture on components. That is: each 
 Basically each component extends from `React.PureComponent` and implements a `render()` method where the UI is returned in `jsx` format.
 
 ##### **`/src/components/ButtonBookmark/index.js`**
-```ts
+```js
 import React from "react";
 
 class ButtonBookmark extends React.PureComponent {
