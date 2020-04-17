@@ -9,6 +9,7 @@ aux_links:
 # Main navigation
 layout: default
 title: Documentation
+nav_order: 4
 has_children: false
 has_toc: true
 # Footer content appears at the bottom of every page's main content
