@@ -244,33 +244,117 @@ let persistor = persistStore(store);
 export { persistor, store };
 ```
 
-
-### Conectors
-
-
+How the store is connected to the UI is specified below.
 
 ## Components
 
-With **Adventure Travel** you have a variety ready-to-use components to create a modern and beautifull mobile application.
+As you probably know, React bases its architecture on components. That is: each piece of an app is handled as an isolated component (class or Hooks) where its own states, properties, styles and the access to the store are handled. With **Adventure Travel** you have a variety ready-to-use components to create your own mobile application. Components like `ButtonGradient`, `CardPopular` or `ImageCollage` can be found in the `/src/components` folder. Similarly we have created a folder to organize the components relating to the screens of the app: `/src/screens`. In this way we separate more atomic components like `ButtonGradient` from the more complex ones that compose a screen.
 
-Uso de PropTypes para validaciones, uso de StyleSheet dentro de archivo de componente. Crear archivos package.json y index para incluir archivos a exportar y rehusar. 
-To avoid having to import components like this
+Basically each component extends from `React.PureComponent` and implements a `render()` method where the UI is returned in `jsx` format.
 
-import { TinyButton } from './TinyButton/TinyButton'
+##### **`/src/components/ButtonBookmark/index.js`**
+```js
+import React from "react";
 
-make an index.js in that components folder which export the named component.
+class ButtonBookmark extends React.PureComponent {
+    constructor(props) {
+        super(props);
+    }
 
-// components/TinyButton/index.js
-export * from './TinyButton'
+    render() {
+        // ...
+    }
+}
 
-Component’s file name should be in Pascal Case.
-Component names should be like TabSwitcher and not like tabSwitcher, tab-switcher etc. Also no other type of file should be in Pascal Case. This way when we see a filename in Pascal Case, it is immediately clear that the file is a react component.
-Use FlatList.
+ButtonBookmark.propTypes = {
+    experienceId: PropTypes.number
+}
+
+const styles = StyleSheet.create({
+    content: {
+        alignSelf: "flex-end",
+        alignItems: "flex-end",
+        padding: 8
+    },
+    icon: {
+        fontSize: 20
+    }
+});
+```
+
+In each component we also include the use of `propTypes` to declare the properties required by the component and its data type. When props are passed to a component, they are checked against the type definitions configured in the propTypes property. When an invalid value is passed for a prop, a warning is displayed on the console.
+
+Likewise, each component includes the reference to the component's own styles using `StyleSheet` within the same file. Using the constant `styles` you can access the styles inside each component.
+
+### Connecting the components to the store
+
+To connect the Redux store to the UI (components) we use the connect() function from `react-redux`. This function provides to the connected component the data it requires from the store, and the functions it can use to send actions to the store. If the component requires the use of an action that handles the state of the application, such as `addBookmark`, we can import the functions that we had already created in the `actions` folder.
+
+```js
+import React from "react";
+import { addBookmark, deleteBookmark } from "@redux/actions/bookmarks";
+import { connect } from "react-redux";
+```
+
+Then we must create the `mapSateToProps` object to specify the properties we want to use from the global state and the `mapDispatchToProps` object to link the imported functions that act on the global state. We can then invoke the `connect` function using these objects as parameters and connect the component (`ButtonBookmark` in this example) to export it. This way you can access the declared properties to read the global state values and the functions to modify the global state.
+
+##### **`/src/components/ButtonBookmark/index.js`**
+```js
+import React from "react";
+import { addBookmark, deleteBookmark } from "@redux/actions/bookmarks";
+import { connect } from "react-redux";
+
+class ButtonBookmark extends React.PureComponent {
+    // ...
+}
+
+const mapSateToProps = state => {
+    return {
+        bookmarks: state.bookmarks,
+        experiences: state.explore.experienceResults.experiences
+    };
+};
+
+const mapDispatchToProps = {
+    addBookmark,
+    deleteBookmark
+};
+
+export default connect(mapSateToProps, mapDispatchToProps)(ButtonBookmark);
+```
+
+Now within the functions of the component it is possible to access as a property to the global state of `bookmarks` (`this.props.bookmarks`) or `experiences` (`this.props.experiences`). Similarly, the functions `this.props.addBookmark` and `this.props.deleteBookmark` can be accessed as properties.
+
+```js
+render() {
+    const booked = this.props.bookmarks.some(b => b.id == this.props.experienceId);
+    return (
+        <TouchableOpacity
+            style={styles.content}
+            onPress={booked ? this.removeBookmark : this.addBookmark}
+        >
+            <Icon
+                name={booked ? "heart" : "hearto"}
+                color={booked ? Color.heart : Color.background}
+                style={styles.icon}
+            />
+        </TouchableOpacity>
+    );
+}
+
+addBookmark = () => {
+    const experience = this.props.experiences.find(e => e.id == this.props.experienceId);
+    this.props.addBookmark(experience);
+}
+
+removeBookmark = () => {
+    this.props.deleteBookmark(this.props.experienceId)
+}
+```
 
 ## Screens/Pages
 
-Filename for Page Component should be lowercase
-The page name corresponds to the route name. Route names in url are lowercase, it makes sense to have the file name lowercase also.
+Use FlatList.
 
 react-navigation — Application navigation
 Navigation structure
