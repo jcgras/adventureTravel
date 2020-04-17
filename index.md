@@ -325,7 +325,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(ButtonBookmark);
 
 Now within the functions of the component it is possible to access as a property to the global state of `bookmarks` (`this.props.bookmarks`) or `experiences` (`this.props.experiences`). Similarly, the functions `this.props.addBookmark` and `this.props.deleteBookmark` can be accessed as properties.
 
-```JSX
+```tsx
 render() {
     const booked = this.props.bookmarks.some(b => b.id == this.props.experienceId);
     return (
