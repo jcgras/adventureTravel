@@ -1,15 +1,17 @@
 # Adventure Travel - React Native Template
+{:toc}
 
 With **Adventure Travel** template we want to offert more than a set of components and styles. We have carefully created a project where we aim to provide a simple structure for any kind of React Native project, allowing you to adapt, reuse and create react native components easily.
 
 For this project we have been inspired by a travel agency, however, we intend that this template can also be used in a wide range of businesses. If you had a web page for your business, **Adventure Travel** supports you to convert/extend your current websites to mobile app efficiently.
 
-### What do we include in general?
+### What do we support in general?
+{:toc}
 
 - Support for iOs and Android
 - React Native with JSX
 - Redux
-- Backend integration with REST API/Firebase
+- Backend integration with Firebase
 - Push Notifications via Firebase
 - Maps and Geolocation
 - Google APIs integration
@@ -17,6 +19,7 @@ For this project we have been inspired by a travel agency, however, we intend th
 - Flexible variable uses via config file
 
 ## Reference links
+{:toc}
 
 Try a demo App, avalilable download on Appstore and Google Play:
 
@@ -27,12 +30,19 @@ iOS demo | 	https://itunes.apple.com/in/app/adventureTravel/id999999999
 Android demo | https://play.google.com/store/apps/details?id=com.svalvard.adventureTravel
 
 ## Quick start
+{:toc}
 
 Install for iOs / install for Android
 
-## Configuration
+## Backend configuration
+{:toc}
 
-If you need to use enviroment variables like URLs, API keys, usernames, passwords or any other parameter, we include in the project the `.env` file to store it. We use the `react-native-dotenv` [package](https://www.npmjs.com/package/react-native-dotenv) to import the configuration variables from a .env file. If you need to use the Google Map Service, for example, you must to include the `GOOGLE_MAPS_API_KEY` variable with the API key value. (_You can see how to get a Google Maps API key from this [link](https://developers.google.com/maps/documentation/embed/get-api-key)._)
+Firebase configuration.
+
+## App configuration
+{:toc}
+
+If you need to use enviroment variables like URLs, API keys, usernames, passwords or any other parameter in your app, we include in the project the `.env` file to store it. We use the `react-native-dotenv` [package](https://www.npmjs.com/package/react-native-dotenv) to import the configuration variables from a `.env` file. If you need to use the Google Map Service, for example, you must to include the `GOOGLE_MAPS_API_KEY` variable with the API key value. (_You can see how to get a Google Maps API key from this [link](https://developers.google.com/maps/documentation/embed/get-api-key)._)
 
 ##### **`/.env`**
 ``` js
@@ -46,12 +56,14 @@ import { GOOGLE_MAPS_API_KEY, ANOTHER_CONFIG } from 'react-native-dotenv';
 If you have a separate development and production environment, that requires different configuration variables, you can use an `.env` file for the development/test environment variables and another `.env.production` file for the production environment variables.
 
 ## Project structure
+{:toc}
 
 > A structure must be simple enough for new team members to quickly get on board and immerse themselves into the project.
 
 React’s ecosystem offers users complete control over everything, without being tied to any particular way of doing things. However, whenever we work on a React project it is necessary to use some kind of consensus to organize the source code. With this in mind, we believe that the ideal React project structure is the one that allows you to move around your code with the least amount of effort. Following this principle, **Adventure Travel** is made up of a simple project structure that allows you to easily scalate, adapt, reuse and create React Native components. In any case, you are welcome to adjust it for your own use case.
 
 ### Application modules
+{:toc}
 
 In the project source (on the `src` folder) we have the main folders where all the elements of the application are organized.
 
@@ -99,6 +111,7 @@ const primaryColor = Color.primary;
 ```
 
 ### One place for static images
+{:toc}
 
 In any mobile application project it is necessary to use static image files (embedded in the app) instead of always downloading them from the Internet. This applies mainly for image files such as illustrations, logos, icons, etc. For this reason we have included a single folder to store all the embedded image files, located in the path: `/src/images`. We have included also the `Images.js` file in the `@common` module to export the reference of all the static images, located in the images folder.
 
@@ -126,6 +139,7 @@ render() {
 ```
 
 ## Redux, one state to rule them all
+{:toc}
 
 > Redux handles the entire application data flow within a single container while the previous state persists as well.
 
@@ -140,6 +154,7 @@ To use this library (actually Redux is a library) a `redux` module was created t
 ![Image](/images/redux_module.png)
 
 ### Actions
+{:toc}
 
 The whole state of the app is stored in an object tree inside a single store. The only way to change the state tree is to emit an action, an object describing what happened. ([Redux Documentation](https://redux.js.org/introduction/getting-started))
 
@@ -163,6 +178,7 @@ export {
 ```
 
 ### Reducers
+{:toc}
 
 Actions only tell what to do, but they don’t tell how to do, so reducers are the pure functions that take the current state and action and return the new state and tell the store how to do. To summarize, the reducers specify how the actions transform the state tree. We have included the `reducers` folder to group the reducers of each object.
 
@@ -193,6 +209,7 @@ export default reducer;
 ```
 
 ### Store
+{:toc}
 
 Basically the store is the object which holds the state of the application. We have created the `store.js` file to include the single store for the entire application, as recommended by the Redux documentation:
 >It's important to note that you'll only have a single store in a Redux application. When you want to split your data handling logic, you'll use reducer composition instead of many stores. ([Redux Documentation](https://redux.js.org/basics/store))
@@ -247,6 +264,7 @@ export { persistor, store };
 How the store is connected to the UI is specified below.
 
 ## Components
+{:toc}
 
 As you probably know, React bases its architecture on components. That is: each piece of an app is handled as an isolated component (class or Hooks) where its own states, properties, styles and the access to the store are handled. With **Adventure Travel** you have a variety ready-to-use components to create your own mobile application. Components like `ButtonGradient`, `CardPopular` or `ImageCollage` can be found in the `/src/components` folder. Similarly we have created a folder to organize the components relating to the screens of the app: `/src/screens`. In this way we separate more atomic components like `ButtonGradient` from the more complex ones that compose a screen.
 
@@ -287,6 +305,7 @@ In each component we also include the use of `propTypes` to declare the properti
 Likewise, each component includes the reference to the component's own styles using `StyleSheet` within the same file. Using the constant `styles` you can access the styles inside each component.
 
 ### Connecting the components to the store
+{:toc}
 
 To connect the Redux store to the UI (components) we use the connect() function from `react-redux`. This function provides to the connected component the data it requires from the store, and the functions it can use to send actions to the store. If the component requires the use of an action that handles the state of the application, such as `addBookmark`, we can import the functions that we had already created in the `actions` folder.
 
@@ -353,6 +372,7 @@ removeBookmark = () => {
 ```
 
 ## Screens/Pages
+{:toc}
 
 Use FlatList.
 
