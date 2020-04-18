@@ -17,21 +17,22 @@ has_toc: true
 ## Application modules
 
 > A structure must be simple enough for new team members to quickly get on board and immerse themselves into the project.
+{: .text-grey-dk-000 }
 
 React’s ecosystem offers users complete control over everything, without being tied to any particular way of doing things. However, whenever we work on a React project it is necessary to use some kind of consensus to organize the source code. With this in mind, we believe that the ideal React project structure is the one that allows you to move around your code with the least amount of effort. Following this principle, **Adventure Travel** is made up of a simple project structure that allows you to easily scalate, adapt, reuse and create React Native components. In any case, you are welcome to adjust it for your own use case.
 
-React Native uses the JavaScript language to generate from the source code to iOS and Android platforms. We start from the JavaScript source code located in the `/src` folder of the project, inside this folder all the modules of the application will be organized.
+React Native uses the JavaScript language to generate from the source code to iOS and Android platforms. We start from the JavaScript source code located in the **/src** folder of the project, inside this folder all the modules of the application will be organized.
 
 ![Image](/images/modules.png)
 
 Folder | Description
 ---------|----------
  _common_ | It contains the common elements such as global styles, colors, utils, etc.
- _components_ | components
+ _components_ | Here we place the application components and their related styles.
  _images_ | It contains the static images used in the project such as illustrations, logos, etc.
  _navigation_ | navigation
  _redux_ | redux
- _screens_ | screens
+ _screens_ | It contains the components relating to the application screens and their related styles.
 
 You have probably noticed that in each of these folders the files `index.js` and `package.json` are included. Both files are used to export and define the module with global access within the project.
 
@@ -69,7 +70,7 @@ const primaryColor = Color.primary;
 
 ### Static images
 
-In any mobile application project it is necessary to use static image files (embedded in the app) instead of always downloading them from the Internet. This applies mainly for image files such as illustrations, logos, icons, etc. For this reason we have included a single folder to store all the embedded image files, located in the path: `/src/images`. We have included also the `Images.js` file in the `@common` module to export the reference of all the static images, located in the images folder.
+In any mobile application project it is necessary to use static image files (embedded in the app) instead of always downloading them from the Internet. This applies mainly for image files such as illustrations, logos, icons, etc. For this reason we have included a single folder to store all the embedded image files, located in the path: **/src/images**. We have included also the `Images.js` file in the `@common` module to export the reference of all the static images, located in the images folder.
 
 ![Image](/images/imageReference.png)
 
@@ -97,6 +98,7 @@ render() {
 ## Redux, one state to rule them all
 
 > Redux handles the entire application data flow within a single container while the previous state persists as well.
+{: .text-grey-dk-000 }
 
 As an important part of our architecture, we include Redux for application status management. With Redux we can have one application state as a global state ("Single source of truth"), that includes all application data -like bookings and bookmarks- but also temporary states like search results, search history or popular destinations.
 
@@ -104,7 +106,7 @@ As an important part of our architecture, we include Redux for application statu
 _Tree view from [React Native Debugger![icon](/images/ext-link.png)](https://github.com/jhen0409/react-native-debugger){:target="_blank"}_
 {: .mx-8 .my-5 }
 
-To use this library (actually Redux is a library) a `redux` module was created that includes the `actions` and `reducers` folders and the `store.js` file. Following the same logic as above, we have also included the `package.json` file for the module name.
+To use this library (actually Redux is a library) a **redux** module was created that includes the **actions** and **reducers** folders and the `store.js` file. Following the same logic as above, we have also included the `package.json` file for the module name.
 
 ![Image](/images/redux_module.png)
 
@@ -112,7 +114,7 @@ To use this library (actually Redux is a library) a `redux` module was created t
 
 The whole state of the app is stored in an object tree inside a single store. The only way to change the state tree is to emit an action, an object describing what happened. ([Redux Documentation![icon](/images/ext-link.png)](https://redux.js.org/introduction/getting-started){:target="_blank"})
 
-Following this principle, the `actions` folder has been created as a container for the action files of each data object. For example, we have included the `bookmarks.js` file for all actions that manage bookmarks objects (saved items). Inside this file we can find a set of functions (Action Creators) to manage each action, for example, adding a new bookmark. So actions are the information (Objects) and action creator are functions that return these actions.
+Following this principle, the **actions** folder has been created as a container for the action files of each data object. For example, we have included the `bookmarks.js` file for all actions that manage bookmarks objects (saved items). Inside this file we can find a set of functions (Action Creators) to manage each action, for example, adding a new bookmark. So actions are the information (Objects) and action creator are functions that return these actions.
 
 _/src/redux/actions/bookmarks.js_
 ``` js
@@ -133,7 +135,7 @@ export {
 
 ### Reducers
 
-Actions only tell what to do, but they don’t tell how to do, so reducers are the pure functions that take the current state and action and return the new state and tell the store how to do. To summarize, the reducers specify how the actions transform the state tree. We have included the `reducers` folder to group the reducers of each object.
+Actions only tell what to do, but they don’t tell how to do, so reducers are the pure functions that take the current state and action and return the new state and tell the store how to do. To summarize, the reducers specify how the actions transform the state tree. We have included the **reducers** folder to group the reducers of each object.
 
 _/src/redux/reducers/bookmarks.js_
 ``` js
@@ -164,7 +166,8 @@ export default reducer;
 ### Store
 
 Basically the store is the object which holds the state of the application. We have created the `store.js` file to include the single store for the entire application, as recommended by the Redux documentation:
->It's important to note that you'll only have a single store in a Redux application. When you want to split your data handling logic, you'll use reducer composition instead of many stores. - [Redux Documentation![icon](/images/ext-link.png)](https://redux.js.org/basics/store){:target="_blank"}
+> It's important to note that you'll only have a single store in a Redux application. When you want to split your data handling logic, you'll use reducer composition instead of many stores. - [Redux Documentation![icon](/images/ext-link.png)](https://redux.js.org/basics/store){:target="_blank"}
+{: .text-grey-dk-000 }
 
 To start using the store instance you just need to import and call `createStore`.
 
@@ -218,7 +221,7 @@ How the store is connected to the UI is specified below.
 ---
 ## Components
 
-As you probably know, React bases its architecture on components. That is: each piece of an app is handled as an isolated component (class or Hooks) where its own states, properties, styles and the access to the store are handled. With **Adventure Travel** you have a variety ready-to-use components to create your own mobile application. Components like `ButtonGradient`, `CardPopular` or `ImageCollage` can be found in the `/src/components` folder. Similarly we have created a folder to organize the components relating to the screens of the app: `/src/screens`. In this way we separate more atomic components like `ButtonGradient` from the more complex ones that compose a screen.
+As you probably know, React bases its architecture on components. That is: each piece of an app is handled as an isolated component (class or Hooks) where its own states, properties, styles and the access to the store are handled. With **Adventure Travel** you have a variety ready-to-use components to create your own mobile application. Components like `ButtonGradient`, `CardPopular` or `ImageCollage` can be found in the **/src/components** folder. Similarly we have created a folder to organize the components relating to the screens of the app: **/src/screens**. In this way we separate more atomic components like `ButtonGradient` from the more complex ones that compose a screen.
 
 Basically each component extends from `React.PureComponent` and implements a `render()` method where the UI is returned in `jsx` format.
 
@@ -259,7 +262,7 @@ Likewise, each component includes the reference to the component's own styles us
 
 ### Connecting the components to the store
 
-To connect the Redux store to the UI (components) we use the `connect()` function from **react-redux**. This function provides to the connected component the data it requires from the store, and the functions it can use to send actions to the store. If the component requires the use of an action that handles the state of the application, such as `addBookmark`, we can import the functions that we had already created in the `actions` folder.
+To connect the Redux store to the UI (components) we use the `connect()` function from **react-redux**. This function provides to the connected component the data it requires from the store, and the functions it can use to send actions to the store. If the component requires the use of an action that handles the state of the application, such as `addBookmark`, we can import the functions that we had already created in the **actions** folder.
 
 ```js
 import React from "react";
