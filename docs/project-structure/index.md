@@ -100,16 +100,9 @@ render() {
 
 As an important part of our architecture, we include Redux for application status management. With Redux we can have one application state as a global state ("Single source of truth"), that includes all application data -like bookings and bookmarks- but also temporary states like search results, search history or popular destinations.
 
-<!-- | ![Image](/images/redux_states.png) | 
-|:--:| 
-| *Tree view from [React Native Debugger](https://github.com/jhen0409/react-native-debugger)* | -->
-
-<div class="code-example" markdown="1">
-
-![Image](/images/redux_states.png)
-
-_Tree view from [React Native Debugger](https://github.com/jhen0409/react-native-debugger)_
-</div>
+![Image](/images/redux_states.png){: .my-0 }
+_Tree view from [React Native Debugger![icon](/images/ext-link.png)](https://github.com/jhen0409/react-native-debugger){:target="_blank"}_
+{: .mx-8 .my-5 }
 
 To use this library (actually Redux is a library) a `redux` module was created that includes the `actions` and `reducers` folders and the `store.js` file. Following the same logic as above, we have also included the `package.json` file for the module name.
 
@@ -117,7 +110,7 @@ To use this library (actually Redux is a library) a `redux` module was created t
 
 ### Actions
 
-The whole state of the app is stored in an object tree inside a single store. The only way to change the state tree is to emit an action, an object describing what happened. ([Redux Documentation](https://redux.js.org/introduction/getting-started))
+The whole state of the app is stored in an object tree inside a single store. The only way to change the state tree is to emit an action, an object describing what happened. ([Redux Documentation![icon](/images/ext-link.png)](https://redux.js.org/introduction/getting-started){:target="_blank"})
 
 Following this principle, the `actions` folder has been created as a container for the action files of each data object. For example, we have included the `bookmarks.js` file for all actions that manage bookmarks objects (saved items). Inside this file we can find a set of functions (Action Creators) to manage each action, for example, adding a new bookmark. So actions are the information (Objects) and action creator are functions that return these actions.
 
@@ -171,7 +164,7 @@ export default reducer;
 ### Store
 
 Basically the store is the object which holds the state of the application. We have created the `store.js` file to include the single store for the entire application, as recommended by the Redux documentation:
->It's important to note that you'll only have a single store in a Redux application. When you want to split your data handling logic, you'll use reducer composition instead of many stores. ([Redux Documentation](https://redux.js.org/basics/store))
+>It's important to note that you'll only have a single store in a Redux application. When you want to split your data handling logic, you'll use reducer composition instead of many stores. - [Redux Documentation![icon](/images/ext-link.png)](https://redux.js.org/basics/store){:target="_blank"}
 
 To start using the store instance you just need to import and call `createStore`.
 
@@ -232,6 +225,7 @@ Basically each component extends from `React.PureComponent` and implements a `re
 _/src/components/ButtonBookmark/index.js_
 ```js
 import React from "react";
+import PropTypes from "prop-types";
 
 class ButtonBookmark extends React.PureComponent {
     constructor(props) {
@@ -259,13 +253,13 @@ const styles = StyleSheet.create({
 });
 ```
 
-In each component we also include the use of `propTypes` to declare the properties required by the component and its data type. When props are passed to a component, they are checked against the type definitions configured in the propTypes property. When an invalid value is passed for a prop, a warning is displayed on the console.
+In each component we also include the use of `propTypes` to declare the properties required by the component and its data type. When props are passed to a component, they are checked against the type definitions configured in the propTypes property. When an invalid value is passed for a prop, a warning is displayed on the console. To learn more about how you can use `prop-types` and all the available validators, see their [documentation![icon](/images/ext-link.png)](https://github.com/facebook/prop-types/blob/master/README.md){:target="_blank"}.
 
 Likewise, each component includes the reference to the component's own styles using `StyleSheet` within the same file. Using the constant `styles` you can access the styles inside each component.
 
 ### Connecting the components to the store
 
-To connect the Redux store to the UI (components) we use the connect() function from `react-redux`. This function provides to the connected component the data it requires from the store, and the functions it can use to send actions to the store. If the component requires the use of an action that handles the state of the application, such as `addBookmark`, we can import the functions that we had already created in the `actions` folder.
+To connect the Redux store to the UI (components) we use the `connect()` function from **react-redux**. This function provides to the connected component the data it requires from the store, and the functions it can use to send actions to the store. If the component requires the use of an action that handles the state of the application, such as `addBookmark`, we can import the functions that we had already created in the `actions` folder.
 
 ```js
 import React from "react";
@@ -278,12 +272,15 @@ Then we must create the `mapStateToProps` object to specify the properties we wa
 _/src/components/ButtonBookmark/index.js_
 ```js
 import React from "react";
+import PropTypes from "prop-types";
 import { addBookmark, deleteBookmark } from "@redux/actions/bookmarks";
 import { connect } from "react-redux";
 
 class ButtonBookmark extends React.PureComponent {
     // ...
 }
+
+// ...
 
 const mapStateToProps = state => {
     return {

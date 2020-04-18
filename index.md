@@ -17,7 +17,7 @@ For this project we have been inspired by a travel agency, however, we intend th
 ## What do we support in general?
 {: .no_toc }
 
-- Support for iOs and Android
+- Support for iOS and Android
 - React Native with JSX
 - Redux
 - Backend integration with Firebase
@@ -44,7 +44,7 @@ Android demo | https://play.google.com/store/apps/details?id=com.svalvard.advent
 ## Quick start
 {:toc}
 
-Install for iOs / install for Android
+Install for iOS / install for Android
 
 Also we include:
 
