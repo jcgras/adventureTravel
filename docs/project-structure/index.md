@@ -19,9 +19,9 @@ has_toc: true
 > A structure must be simple enough for new team members to quickly get on board and immerse themselves into the project.
 {: .text-grey-dk-000 }
 
-React’s ecosystem offers users complete control over everything, without being tied to any particular way of doing things. However, whenever we work on a React project it is necessary to use some kind of consensus to organize the source code. With this in mind, we believe that the ideal React project structure is the one that allows you to move around your code with the least amount of effort. Following this principle, **Adventure Travel** is made up of a simple project structure that allows you to easily scalate, adapt, reuse and create React Native components. In any case, you are welcome to adjust it for your own use case.
+React’s ecosystem offers users complete control over everything, without being tied to any particular way of doing things. However, whenever we work on a React project it is necessary to use some kind of consensus to organize the source code. With this in mind, we believe that the ideal React project structure is the one that allows you to move around your code with the least amount of effort. Following this principle, **Adventure Travel** is made up of a simple project structure that allows you to easily scalate, adapt, reuse and create React Native components. In any case, you are welcome to adjust this structure for your own use case.
 
-React Native uses the JavaScript language to generate from the source code to iOS and Android platforms. We start from the JavaScript source code located in the **/src** folder of the project, inside this folder all the modules of the application will be organized.
+To get into context, let's start analyzing the project from the JavaScript source code located in the **/src** folder. Remember that React Native uses the JavaScript language to generate from the source code to iOS and Android platforms, both in the **/ios** and **android** folders respectively. Inside the **/src** folder all the modules of the application will be organized.
 
 ![Image](/images/modules.png)
 
@@ -102,9 +102,9 @@ render() {
 
 As an important part of our architecture, we include Redux for application status management. With Redux we can have one application state as a global state ("Single source of truth"), that includes all application data -like bookings and bookmarks- but also temporary states like search results, search history or popular destinations.
 
-![Image](/images/redux_states.png){: .my-0 }
+![Image](/images/redux_states.png)<br>
 _Tree view from [React Native Debugger![icon](/images/ext-link.png)](https://github.com/jhen0409/react-native-debugger){:target="_blank"}_
-{: .mx-8 .my-5 }
+{: .my-5 .fs-3 }
 
 To use this library (actually Redux is a library) a **redux** module was created that includes the **actions** and **reducers** folders and the `store.js` file. Following the same logic as above, we have also included the `package.json` file for the module name.
 
