@@ -73,9 +73,7 @@ You can also use the command `yarn lint:fix` to try to fix as many issues as pos
 
 ### Formatting the code
 
-One way to maintain a common style of code in the project is by using a code formatting tool. In this project we have used *Prettier*, which is also integrated with *ESLint*. Prettier supports JavaScript but also other formats like JSX or JSON.
-
-To include Prettier integrated with ESLint we have added `plugin:prettier/recommended` to ESLint configuration file `.eslintrc`.
+One way to maintain a common style of code in the project is by using a code formatting tool. In this project we have used *Prettier*, which is also integrated with *ESLint*. Prettier supports JavaScript but also other formats like JSX or JSON. To include Prettier integrated with ESLint we have added `plugin:prettier/recommended` to the ESLint configuration file.
 
 _/.eslintrc_
 ```js
@@ -84,8 +82,23 @@ _/.eslintrc_
 }
 ```
 
-Now by extending from `plugin:prettier/recommended` we can also get the unformatted errors using the same `yarn lint` command.
+We have also added the rules for Prettier in the `.prettierrc` configuration file. Here we can add the rules that we estimate to validate the coding style. You can see more details of the Prettier configuration from the [documentation site![icon](/images/ext-link.png)](https://prettier.io/docs/en/configuration.html){:target="_blank"}.
+
+*/.prettierrc*
+```js
+{
+  "bracketSpacing": false,
+  "jsxBracketSameLine": true,
+  "singleQuote": true,
+  "trailingComma": "all"
+}
+```
+
+Now with this last configuration we can also get the unformatted errors using the same `yarn lint` command.
 
 ![Image](/images/eslint_terminal1.png)
 
 This time, with the use of the `yarn lint:fix` command, the code will take the proper format, keeping the standard in all the source code.
+
+**If you are using Visual Studio Code you should try the [ESLint extension![icon](/images/ext-link.png)](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint){:target="_blank"}. The extension will highlight the linter error right inside the editor, and you can disable or tweak the rule however you want.*
+{: .text-grey-dk-000 }
