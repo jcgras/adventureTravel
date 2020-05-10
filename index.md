@@ -21,7 +21,8 @@ For this project we have been inspired by a travel agency, however, we intend th
 - React Native with JSX
 - Redux
 - Backend integration with Firebase
-- Push Notifications via Firebase
+- Realtime Database (Store and sync remote data)
+- Push Notifications
 - Maps and Geolocation
 - Google APIs integration
 - Social logins via facebook or Google
