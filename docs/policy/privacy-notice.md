@@ -1,8 +1,9 @@
 ---
 layout: default
 title: PRIVACY NOTICE
-nav_order: 5
+nav_order: 6
 has_toc: true
+nav_exclude: true
 ---
 # PRIVACY NOTICE
 {: .no_toc }

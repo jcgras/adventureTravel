@@ -51,13 +51,13 @@ For this project we have been inspired by an Adventure Travel Agency, however, w
 
 Try a demo App, avalilable download on App Store and Google Play:
 
-![App Store](/images/app-store-badge.svg){:height="500px" width="200px" .m-2}
-![Google Play](/images/google-play-badge.svg){:height="500px" width="200px" .m-2}
+[![App Store](/images/app-store-badge.svg){:height="500px" width="200px" .m-2}](https://itunes.apple.com){: .btn-white target="_blank"}
+[![Google Play](/images/google-play-badge.svg){:height="500px" width="200px" .m-2}](https://play.google.com/store/apps/details?id=com.adventuretravelapp){: .btn-white target="_blank"}
 
 Purchase or more info | [Adventure Travel](https://1.envato.market/xxxx)
-Documentation | [https://docs.svalbard.dev](https://docs.svalbard.dev)
+Documentation | https://docs.svalbard.dev
 iOS demo | 	https://itunes.apple.com/in/app/adventureTravel/id999999999
-Android demo | https://play.google.com/store/apps/details?id=com.svalvard.adventureTravel
+Android demo | https://play.google.com/store/apps/details?id=com.adventuretravelapp
 
 ![](/images/Screen1.png){:height="50px" width="210px" .m-1}
 ![](/images/Screen2.jpg){:height="50px" width="210px" .m-1}

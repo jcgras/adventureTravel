@@ -14,6 +14,10 @@ has_toc: true
 {:toc}
 
 ---
+## Setup your app name
+
+Setup your app name wiht a custom name. Bundle Identifier && applicationId.
+
 ## Enviroment variables
 
 If you need to use enviroment variables like URLs, API keys, usernames, passwords or any other parameter in your app, we include the `.env` file to store it. We use the **react-native-dotenv** [package![icon](/images/ext-link.png)](https://www.npmjs.com/package/react-native-dotenv){:target="_blank"} to import the configuration variables from a `.env` file. If you need to use the Google Map Service, for example, you must to include the `GOOGLE_MAPS_API_KEY` variable with the API key value. You can see how to get a Google Maps API key from this [link![icon](/images/ext-link.png)](https://developers.google.com/maps/documentation/embed/get-api-key){:target="_blank"}.
