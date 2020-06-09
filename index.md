@@ -10,7 +10,7 @@ has_toc: true
 Version: 1.0.1
 {: .label .label-green }
 
-With **Adventure Travel** template we want to offert more than a set of components and styles. We have carefully created a project where we aim to provide a simple structure for any kind of React Native project, allowing you to adapt, reuse and create react native components easily.
+With **Adventure Travel** template we want to offer more than a set of components and styles. We have carefully created a project where we aim to provide a simple structure for any kind of React Native project, allowing you to adapt, reuse and create react native components easily.
 
 For this project we have been inspired by an Adventure Travel Agency, however, we intend that this template can also be used in a wide range of businesses. If you had a web page for your business, **Adventure Travel** supports you to convert/extend your current websites to mobile app efficiently.
 
@@ -36,7 +36,7 @@ For this project we have been inspired by an Adventure Travel Agency, however, w
 <!-- - Support filter by category, tab and pricing -->
 <!-- - Search history and clean up -->
 - Search history
-- Bookmarks/Bookings/User information synchronized across devices
+- Information synchronized across devices
 - User Profile
 - Walkthrough animation
 - Header animation
