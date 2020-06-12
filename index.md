@@ -65,8 +65,4 @@ Android demo | https://play.google.com/store/apps/details?id=com.adventuretravel
 <!-- ![](/images/Screen4.jpg){:height="50px" width="210px" .m-1} -->
 <!-- ![](/images/Screen5.jpg){:height="50px" width="210px" .m-1} -->
 
-<!-- ---
-## Quick start
-{:toc}
-
-Install for iOS / install for Android -->
+Continue reading the next session to [get started](/docs/getting-started).

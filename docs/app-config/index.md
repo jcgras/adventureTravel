@@ -1,11 +1,13 @@
 ---
 layout: default
 title: App configuration
-nav_order: 3
+nav_order: 4
 has_toc: true
 ---
 # App configuration
 {: .no_toc }
+
+Once the backend is configured, we will make some adjustments to build and execute the template.
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -14,24 +16,31 @@ has_toc: true
 {:toc}
 
 ---
-## Setup your app name
+## Google APIs setup
 
-Setup your app name wiht a custom name. Bundle Identifier && applicationId.
+Google API offers an indispensable set of features that can be very useful as a complement or essence of many modern applications. Services such as Search, Gmail, Translate, Calendar or Google Maps are included here and we can take advantage of them for use in our apps. In this project we focus on two of these services:
 
-## Enviroment variables
+* Google Places (for the searches)
+* Google Maps
 
-If you need to use enviroment variables like URLs, API keys, usernames, passwords or any other parameter in your app, we include the `.env` file to store it. We use the **react-native-dotenv** [package![icon](/images/ext-link.png)](https://www.npmjs.com/package/react-native-dotenv){:target="_blank"} to import the configuration variables from a `.env` file. If you need to use the Google Map Service, for example, you must to include the `GOOGLE_MAPS_API_KEY` variable with the API key value. You can see how to get a Google Maps API key from this [link![icon](/images/ext-link.png)](https://developers.google.com/maps/documentation/embed/get-api-key){:target="_blank"}.
+![Image](/images/goople_apis.png)
+
+To start using the Google API services you must first create a (free) [Google Cloud Platform![icon](/images/ext-link.png)](https://console.cloud.google.com){:target="_blank"} account and follow these [steps![icon](/images/ext-link.png)](https://developers.google.com/maps/documentation/embed/get-api-key){:target="_blank"} to get, restrict and enable a Google API key. Once you get your API key, continue with the following statement to add it to the environment file.
+
+### Enviroment variables
+
+If you need to use enviroment variables like URLs, API keys, usernames, passwords or any other parameter in your app, we include the `.env` file to store it. We use the **react-native-dotenv** [package![icon](/images/ext-link.png)](https://www.npmjs.com/package/react-native-dotenv){:target="_blank"} to import the configuration variables from a `.env` file. If you need to use the Google Map Service, for example, you must to include the `GOOGLE_API_KEY` variable with the API key value.
 
 _/.env_
 ``` js
-GOOGLE_MAPS_API_KEY=YOUR_API_KEY_VALUE_HERE
+GOOGLE_API_KEY=YOUR_API_KEY_VALUE_HERE
 ANOTHER_CONFIG=true
 ```
 You can then import and use any of the defined variables.
 ``` js
-import {GOOGLE_MAPS_API_KEY, ANOTHER_CONFIG} from 'react-native-dotenv';
+import {GOOGLE_API_KEY, ANOTHER_CONFIG} from 'react-native-dotenv';
 ```
-If you have a separate development and production environment, that requires different configuration variables, you can use an `.env` file for the development/test environment variables and another `.env.production` file for the production environment variables.
+If you have a separate development and production environment, that requires different configuration variables, you can use an `.env` file for the development/test environment variables and another `.env.production` file for the production environment variables that are used in releases.
 
 ### Additional settings for Google Maps
 
@@ -68,6 +77,13 @@ _/android/app/src/main/AndroidManifest.xml_
 <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 .....
 ```
+
+---
+## Building the app 🚀
+
+We will start by installing the node modules, so from the terminal run: `npm install` or if you prefer: `yarn` and wait for all the packages to be installed.
+
+<!-- For iOS environment lets install the pod files, from terminal access to project folder: `cd ios` and then run: `pod install`. Luego retrocede a la carpeta principal (`cd ..`) y ejecuta: `yarn ios` para correr el proyecto por primera vez. Nota que aun hay otras configuraciones que hacer, pero vale la pena validar que el proyecto está abriendo correctamente. -->
 
 ---
 ## Script commands
