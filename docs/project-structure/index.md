@@ -7,6 +7,10 @@ has_toc: true
 # Project Structure
 {: .no_toc }
 
+In this session we will describe the structure designed for this project. With this design we intend to offer you a solution adaptable to any kind of management app. With the combination of Redux and Firebase Realtime Database technologies we can generate a synchronized system, which allows the update in real time with all your devices.
+
+---
+
 ## Table of contents
 {: .no_toc .text-delta }
 
@@ -23,20 +27,44 @@ React’s ecosystem offers users complete control over everything, without being
 
 To get into context, let's start analyzing the project from the JavaScript source code located in the **/src** folder. Remember that React Native uses the JavaScript language to generate from the source code to iOS and Android platforms, both in the **/ios** and **android** folders respectively. Inside the **/src** folder all the modules of the application will be organized.
 
-![Image](/images/modules.png)
+```
+📂 src
+ ┣ 📁 common
+ ┣ 📁 components
+ ┣ 📁 images
+ ┣ 📁 redux
+ ┣ 📁 screens
+ ┗ 📦 package.json
+ ```
 
-Folder | Description
+Module | Description
 ---------|----------
  _common_ | It contains the common elements such as global styles, colors, utils, etc.
  _components_ | Here we place the application components and their related styles.
  _images_ | It contains the static images used in the project such as illustrations, logos, etc.
- _navigation_ | navigation
- _redux_ | redux
+ _navigation_ | This module contains the components related to navigation. It contains the paths and references to screens, modals and tabs.
+ _redux_ | It contains the elements related to Redux, such as: actions, reducers, middlewares and the store configuration.
  _screens_ | It contains the components relating to the application screens and their related styles.
 
-You have probably noticed that in each of these folders the files `index.js` and `package.json` are included. Both files are used to export and define the module with global access within the project.
+You have probably noticed that in each of these modules the files `index.js` and `package.json` are included. Both files are used to export and define the module with global access within the project.
 
-![Image](/images/package_structure.png)
+```
+📂 src
+ ┣ 📂 common
+ ┃ ┣ Color.js
+ ┃ ┣ Device.js
+ ┃ ┣ Images.js
+ ┃ ┣ RealtimeDatabase.js
+ ┃ ┣ Styles.js
+ ┃ ┣ Util.js
+ ┃ ┣ index.js
+ ┃ ┗ 📦 package.json
+ ┣ 📁 components
+ ┣ 📁 images
+ ┣ 📁 redux
+ ┣ 📁 screens
+ ┗ 📦 package.json
+```
 
 In the `index.js` file we must include all the module reference (imports) and then export it to make it visible outside the folder.
 
@@ -72,8 +100,6 @@ const primaryColor = Color.primary;
 
 In any mobile application project it is necessary to use static image files (embedded in the app) instead of always downloading them from the Internet. This applies mainly for image files such as illustrations, logos, icons, etc. For this reason we have included a single folder to store all the embedded image files, located in the path: **/src/images**. We have included also the `Images.js` file in the `@common` module to export the reference of all the static images, located in the images folder.
 
-![Image](/images/imageReference.png)
-
 _/src/common/Images.js_
 ``` js
 export default {
@@ -106,9 +132,22 @@ As an important part of our architecture, we include Redux for application statu
 _Tree view from [React Native Debugger![icon](/images/ext-link.png)](https://github.com/jhen0409/react-native-debugger){:target="_blank"}_
 {: .my-5 .fs-3 }
 
-To use this library (actually Redux is a library) a **redux** module was created that includes the **actions** and **reducers** folders and the `store.js` file. Following the same logic as above, we have also included the `package.json` file for the module name.
+To use this library (actually Redux is a library) a **redux** module was created that includes the **actions**, **middlewares**, **reducers** folders and the `store.js` file. Following the same logic as above, we have also included the `package.json` file for the module name.
 
-![Image](/images/redux_module.png)
+```
+📂 src
+ ┣ 📁 common
+ ┣ 📁 components
+ ┣ 📁 images
+ ┣ 📂 redux
+ ┃ ┣ 📁 actions
+ ┃ ┣ 📁 middlewares
+ ┃ ┣ 📁 reducers
+ ┃ ┣ 📦 package.json
+ ┃ ┗ store.js
+ ┣ 📁 screens
+ ┗ 📦 package.json
+```
 
 ### Actions
 
@@ -141,82 +180,145 @@ _/src/redux/reducers/bookmarks.js_
 ``` js
 const defaultState = [];
 
-function reducer(state = defaultState, { type, payload }) {
-    switch (type) {
-        case "SET_BOOKMARKS": {
-            return payload;
-        }
-        case "ADD_BOOKMARK": {
-            return [...state, payload];
-        }
-        case "DELETE_BOOKMARK": {
-            return state.filter(b => b.id !== payload);
-        }
-        case "CLEAR_BOOKMARKS": {
-            return defaultState;
-        }
-        default:
-            return state;
+function reducer(state = defaultState, {type, payload}) {
+  switch (type) {
+    case 'ADD_BOOKMARK': {
+      return [...state, payload];
     }
+    case 'DELETE_BOOKMARK': {
+      return state.filter((b) => b.id !== payload);
+    }
+    case 'CLEAR_BOOKMARKS': {
+      return defaultState;
+    }
+    default:
+      return state;
+  }
 }
 
 export default reducer;
 ```
 
+### Middlewares
+
+Basically a middleware is some code you can put between the framework receiving a request, and the framework generating a response. Redux middleware provides a third-party extension point between dispatching an action, and the moment it reaches the reducer. You can usually use Redux middleware for logging, crash reporting, talking to an asynchronous API, routing, and more. - [Redux Middleware![icon](/images/ext-link.png)](https://redux.js.org/advanced/middleware){:target="_blank"}
+
+In this architecture we have included a **middleware** to manage the synchronization between remote data (Firebase Realtime Database) and local data (local store). For example, when we call the action **ADD_BOOKMARK** this middleware will be invoked, the action will be detected and the information will be sent to the remote database. At the same time the action is executed and the local store is updated from the corresponding **reducer**.
+
+_/src/redux/middlewares/firebase.js_
+``` js
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
+
+const firebase = (store) => (next) => (action) => {
+  switch (action.type) {
+    case 'ADD_BOOKMARK':
+      next(action);
+      database()
+        .ref(`/bookmarks/${auth().currentUser.uid}/${action.payload.id}`)
+        .set({...action.payload, created: new Date().getTime()});
+      break;
+      //........
+   }
+};
+
+export default firebase;
+```
+The above example applies to updating remote data, however when using Firebase Realtime Database, synchronization can occur in reverse. That is, if you update the remote data, either from another device or from another interface such as a website, you must also update the local store. To complete this cycle a **startListening** function has been added to "listen" all the time for remote Firebase updates and update the local store only if the information does not exist.
+
+_/src/common/RealtimeDatabase.js_
+```js
+import database from '@react-native-firebase/database';
+import {store} from '@redux/store';
+
+const RealtimeDatabase = (() => {
+  return {
+    startListening: () => {
+      const {user} = store.getState();
+      /* Listening for new bookmark */
+      database()
+        .ref(`bookmarks/${user.uid}`)
+        .orderByChild('created')
+        .on('child_added', (snapshot) => {
+          const newBookmark = snapshot.val();
+          const {bookmarks} = store.getState();
+          const exist = bookmarks.some((b) => b.id === newBookmark.id);
+          // Add only if you are on another device (the bookmark doesn't exist)
+          if (!exist) {
+            store.dispatch({
+              type: 'ADD_BOOKMARK',
+              payload: newBookmark,
+            });
+          }
+        });
+    //........
+})();
+
+export default RealtimeDatabase;
+```
+
 ### Store
 
-Basically the store is the object which holds the state of the application. We have created the `store.js` file to include the single store for the entire application, as recommended by the Redux documentation:
+The store is the object which holds the state of the application. We have created the `store.js` file to include the single store for the entire application, as recommended by the Redux documentation:
 > It's important to note that you'll only have a single store in a Redux application. When you want to split your data handling logic, you'll use reducer composition instead of many stores. - [Redux Documentation![icon](/images/ext-link.png)](https://redux.js.org/basics/store){:target="_blank"}
 {: .text-grey-dk-000 }
 
-To start using the store instance you just need to import and call `createStore`.
-
-``` js
-import { createStore } from 'redux'
-import todoApp from './reducers'
-
-const store = createStore(todoApp)
-```
-
-But in our case we use multiple reducers and it is necessary to include the `combineReducers()` function to combine several reducers into one.
+To start using the store instance you just need to import and call `createStore`. In our case we use multiple reducers, therefore it is necessary to include the `combineReducers()` function to combine several reducers into one.
 
 _/src/redux/store.js_
 ``` js
-import { createStore, combineReducers } from "redux";
+import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
+import {persistStore, persistReducer} from 'redux-persist';
+import thunk from 'redux-thunk';
+import firebase from './middlewares/firebase';
 // ...
 import searchHistory from "./reducers/searchHistory";
 import bookmarks from "./reducers/bookmarks";
 import bookings from "./reducers/bookings";
+import config from './reducers/config';
 
 const reducer = combineReducers({
     // ...
     searchHistory,
     bookmarks,
-    bookings
+    bookings,
+    config,
 });
 ```
 
-We also use `Redux-Persist` to save the Redux store when the app is closed and `Redux-Thunk` middleware to write Action Creators that return a function instead of an action. This last element is the one that allows us to create actions such as `addBookmark` as functions.
+We also use `Redux-Persist` to save the Redux store when the app is closed, and refer to the middlewares: `firebase` middleware (described above) and `Redux-Thunk` middleware to write Action Creators that return a function instead of an action. This last element is the one that allows us to create actions such as `addBookmark` as functions.
 
 _/src/redux/store.js_
 ``` js
 const persistConfig = {
-    key: "root",
-    storage: AsyncStorage,
-    whitelist: ["user", "explore", "categories", "popular", "searchHistory", "bookmarks", "bookings", "config"],
-    blacklist: []
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: [
+    'user',
+    'explore',
+    'categories',
+    'popular',
+    'searchHistory',
+    'bookmarks',
+    'bookings',
+    'config',
+  ],
+  blacklist: [],
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const persistedReducer = persistReducer(persistConfig, reducer);
-const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(
+  persistedReducer,
+  composeEnhancers(applyMiddleware(thunk, firebase)),
+);
 let persistor = persistStore(store);
 
-export { persistor, store };
+export {persistor, store};
 ```
 
-How the store is connected to the UI is specified below.
+Below, we specify how the store is connected to the user interface.
 
 ---
 ## Components
@@ -328,10 +430,3 @@ removeBookmark = () => {
     this.props.deleteBookmark(this.props.experienceId)
 }
 ```
----
-## Screens/Pages
-
-Use FlatList.
-
-react-navigation — Application navigation
-Navigation structure

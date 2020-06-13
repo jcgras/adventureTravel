@@ -9,6 +9,8 @@ has_toc: true
 
 Once the backend is configured, we will make some adjustments to build and execute the template.
 
+---
+
 ## Table of contents
 {: .no_toc .text-delta }
 
@@ -101,8 +103,13 @@ yarn ios
 ```
 With this command you must generate the application for iOS and raise the simulator you have configured. If you have any problem when you start the app for the first time, try to run it from Xcode to validate the project configuration.
 
-### Building for Android environment
+### Running on Android environment
 
+If you're working in an Android environment, to start the app you only have to run from the terminal:
+```
+yarn android
+```
+Remember that you must have an Android simulator installed correctly for the application to run successfully. In case you have any problem running the app for the first time open with Android Studio the generated android project, located in the **/android** folder of the project. From Android Studio verify that the sync runs correctly from: **File->Sync Project with Gradle Files** menu and also that you have a simulator configured. 
 
 ---
 ## Script commands
