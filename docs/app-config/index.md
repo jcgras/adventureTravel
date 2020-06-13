@@ -81,9 +81,28 @@ _/android/app/src/main/AndroidManifest.xml_
 ---
 ## Building the app 🚀
 
-We will start by installing the node modules, so from the terminal run: `npm install` or if you prefer: `yarn` and wait for all the packages to be installed.
+Once you have all the previous configurations ready, we can then start the build and execution of the project. Let's start by installing the **node modules**, to do this go to the project folder from the terminal and run:
+```
+npm install
+```
+and wait for all the packages to be installed.
 
-<!-- For iOS environment lets install the pod files, from terminal access to project folder: `cd ios` and then run: `pod install`. Luego retrocede a la carpeta principal (`cd ..`) y ejecuta: `yarn ios` para correr el proyecto por primera vez. Nota que aun hay otras configuraciones que hacer, pero vale la pena validar que el proyecto está abriendo correctamente. -->
+### Running on iOS environment
+
+For iOS environment it's necesary to install the Podfile. The Podfile it's located in **/ios/Podfile** project route and contains the dependencies of the node modules that target the Xcode project. To install this references, access from the terminal to the _ios_ folder and install the pod files:
+```
+cd ios/
+pod install
+```
+Note that every time you add or update a node module you must execute this action to update the references in the iOS project. After the references are installed, go back to the project root folder and run the command to start the application:
+```
+cd ..
+yarn ios
+```
+With this command you must generate the application for iOS and raise the simulator you have configured. If you have any problem when you start the app for the first time, try to run it from Xcode to validate the project configuration.
+
+### Building for Android environment
+
 
 ---
 ## Script commands
