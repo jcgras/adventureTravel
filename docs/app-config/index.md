@@ -7,7 +7,7 @@ has_toc: true
 # App configuration
 {: .no_toc }
 
-Once the backend is configured, we will make some adjustments to build and execute the template.
+Once the backend is configured, we will make some adjustments to build and execute the app.
 
 ---
 

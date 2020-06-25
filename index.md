@@ -4,15 +4,15 @@ title: Home
 nav_order: 1
 has_toc: true
 ---
-# Adventure Travel - React Native Template
+# Adventure Travel - React Native App
 {: .no_toc }
 
 Version: 1.0.1
 {: .label .label-green }
 
-With **Adventure Travel** template we want to offer more than a set of components and styles. We have carefully created a project where we aim to provide a simple structure for any kind of React Native project, allowing you to adapt, reuse and create react native components easily.
+With **Adventure Travel App** we want to offer more than a set of components and styles. We have carefully created a project where we aim to provide a simple structure for any kind of React Native project, allowing you to adapt, reuse and create react native components easily.
 
-For this project we have been inspired by an Adventure Travel Agency, however, we intend that this template can also be used in a wide range of businesses. If you had a web page for your business, **Adventure Travel** supports you to convert/extend your current websites to mobile app efficiently.
+For this project we have been inspired by an Adventure Travel Agency, however, we intend that this project can also be used in a wide range of businesses. If you had a web page for your business, **Adventure Travel** supports you to convert/extend your current websites to mobile app efficiently.
 
 ## What do we support in general?
 {: .no_toc }
@@ -54,15 +54,12 @@ Try a demo App, avalilable download on App Store and Google Play:
 [![App Store](/images/app-store-badge.svg){:height="500px" width="200px" .m-2}](https://itunes.apple.com){: .btn-white target="_blank"}
 [![Google Play](/images/google-play-badge.svg){:height="500px" width="200px" .m-2}](https://play.google.com/store/apps/details?id=com.adventuretravelapp){: .btn-white target="_blank"}
 
-Purchase or more info | [Adventure Travel](https://1.envato.market/xxxx)
+<!-- Purchase or more info | [Adventure Travel](https://1.envato.market/xxxx)
 Documentation | https://docs.svalbard.dev
 iOS demo | 	https://itunes.apple.com/in/app/adventureTravel/id999999999
-Android demo | https://play.google.com/store/apps/details?id=com.adventuretravelapp
+Android demo | https://play.google.com/store/apps/details?id=com.adventuretravelapp -->
 
-![](/images/Screen1.png){:height="50px" width="210px" .m-1}
-![](/images/Screen2.jpg){:height="50px" width="210px" .m-1}
-![](/images/Screen3.jpg){:height="50px" width="210px" .m-1}
-<!-- ![](/images/Screen4.jpg){:height="50px" width="210px" .m-1} -->
+![](/images/react-native.png){:width="300px"}
 <!-- ![](/images/Screen5.jpg){:height="50px" width="210px" .m-1} -->
 
 Continue reading the next session to [get started](/docs/getting-started).

@@ -7,7 +7,7 @@ has_toc: true
 # Backend Configuration
 {: .no_toc }
 
-As part of the architecture of this template we have added the use of **Firebase** as a complement for backend operations. Firebase is a Google Backend-as-a-Service (BaaS) platform that helps you build, improve and grow your applications. Firebase offers a wide range of features, but for the purposes of this project we will focus on the following services:
+As part of the architecture we have added the use of **Firebase** as a complement for backend operations. Firebase is a Google Backend-as-a-Service (BaaS) platform that helps you build, improve and grow your applications. Firebase offers a wide range of features, but for the purposes of this project we will focus on the following services:
 
 * Firebase Authentication (For our user authentication service)
 * Firebase Realtime Database (As database)
@@ -41,7 +41,7 @@ If you are working with the iOS platform it's necesary to register a new iOS App
 
 ![Image](/images/addApp.png)
 
-In the registration wizard you must fill out the **iOS bundle ID** of the application (located in the General tab in Xcode), for this template would be: _org.reactjs.native.example.adventureTravelApp_. Later, for your particular project, you must use the **Bundle Identifier** you created your project with, but to test the template we will use this value first.
+In the registration wizard you must fill out the **iOS bundle ID** of the application (located in the General tab in Xcode), for this project would be: _org.reactjs.native.example.adventureTravelApp_. Later, for your particular project, you must use the **Bundle Identifier** you created your project with, but to test the app we will use this value first.
 
 ![Image](/images/addiOSApp.png)
 
@@ -57,7 +57,7 @@ If you are working with the Android platform it's necesary to register a new And
 
 ![Image](/images/addApp.png)
 
-In the registration wizard you must fill out the **Android package name** of the application (specified in the file: **/android/app/build.gradle**), for this template would be: _com.adventuretravelapp_. Later, for your particular project, you must use the **applicationId** you created your project with, but to test the template we will use this value first.
+In the registration wizard you must fill out the **Android package name** of the application (specified in the file: **/android/app/build.gradle**), for this project would be: _com.adventuretravelapp_. Later, for your particular project, you must use the **applicationId** you created your project with, but to test the app we will use this value first.
 
 ![Image](/images/addAndroidApp.png)
 
@@ -82,7 +82,7 @@ With the Email/Password provider the users can sign up using their email address
 ---
 ## Firebase Realtime Database
 
-In this template we use some data as a constant value in the local storage, but we also include a remote database system based on **Firebase Realtime Database** (FRD) to store bookmarks, user information and bookings. With the introduction of FRD we hope you will be able to use it plainly in your project for all the data you need to store permanently.
+In this app we use some data as a constant value in the local storage, but we also include a remote database system based on **Firebase Realtime Database** (FRD) to store bookmarks, user information and bookings. With the introduction of FRD we hope you will be able to use it plainly in your project for all the data you need to store permanently.
 
 When you connect your app to FRD, you’re actually connecting through a WebSocket. WebSockets are much faster than the HTTP protocol, you don’t have to make individual WebSocket calls, because a single socket connection is enough. This allows all your data to be automatically synchronised through that single WebSocket. When you save a change in data, all connected clients receive the updated data almost instantly.
 
