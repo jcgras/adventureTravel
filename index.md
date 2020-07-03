@@ -49,15 +49,14 @@ For this project we have been inspired by an Adventure Travel Agency, however, w
 ## Reference links
 {: .no_toc }
 
-Try a demo App, avalilable download on <!-- App Store and --> Google Play:
+<!-- Try a demo App, avalilable download on App Store and Google Play:
 
-<!-- [![App Store](/images/app-store-badge.svg){:height="500px" width="200px" .m-2}](https://itunes.apple.com){: .btn-white target="_blank"} -->
-[![Google Play](/images/google-play-badge.svg){:height="500px" width="200px" .m-2}](https://play.google.com/store/apps/details?id=com.adventuretravelapp){: .btn-white target="_blank"}
+[![App Store](/images/app-store-badge.svg){:height="500px" width="200px" .m-2}](https://apps.apple.com/us/app/adventure-travel-project/id1521392632){: .btn-white target="_blank"}
+[![Google Play](/images/google-play-badge.svg){:height="500px" width="200px" .m-2}](https://play.google.com/store/apps/details?id=com.adventuretravelapp){: .btn-white target="_blank"} -->
 
-<!-- Purchase or more info | [Adventure Travel](https://1.envato.market/xxxx) -->
-<!-- iOS demo | 	https://itunes.apple.com/in/app/adventureTravel/id999999999 -->
-
+Purchase or more info | [Adventure Travel](https://codecanyon.net/item/adventure-travel-react-native-app/27231612){: target="_blank"}
 Documentation | https://docs.svalbard.dev
+iOS demo | [https://apps.apple.com/us/app/adventure-travel-project/id1521392632](https://apps.apple.com/us/app/adventure-travel-project/id1521392632){: target="_blank"}
 Android demo | [https://play.google.com/store/apps/details?id=com.adventuretravelapp](https://play.google.com/store/apps/details?id=com.adventuretravelapp){: target="_blank"}
 Issues | [https://github.com/svalbard-app/adventureTravel/issues](https://github.com/svalbard-app/adventureTravel/issues){: target="_blank"}
 Contact | [app@svalbard.dev](mailto:app@svalbard.dev)
