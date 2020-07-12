@@ -7,8 +7,11 @@ has_toc: true
 # Adventure Travel - React Native App
 {: .no_toc }
 
-Version: 1.0.1
+Version: 1.0.2
 {: .label .label-green }
+
+Updated: 07/09/2020
+{: .label .label-purple }
 
 With **Adventure Travel App** we want to offer more than a set of components and styles. We have carefully created a project where we aim to provide a simple structure for any kind of React Native project, allowing you to adapt, reuse and create react native components easily.
 
@@ -26,7 +29,7 @@ For this project we have been inspired by an Adventure Travel Agency, however, w
 - Firebase Authentication
 - Google Maps integration
 - Flexible variable uses via config file
-<!-- - Push Notifications -->
+- Push Notifications
 <!-- - Social logins via facebook or Google -->
 
 ## ..and also:
@@ -42,17 +45,11 @@ For this project we have been inspired by an Adventure Travel Agency, however, w
 - Header animation
 - Easy to change colors and styles
 - Regular feature update
-<!-- - Regular feature update and free bug fix -->
 
 ---
 
 ## Reference links
 {: .no_toc }
-
-<!-- Try a demo App, avalilable download on App Store and Google Play:
-
-[![App Store](/images/app-store-badge.svg){:height="500px" width="200px" .m-2}](https://apps.apple.com/us/app/adventure-travel-project/id1521392632){: .btn-white target="_blank"}
-[![Google Play](/images/google-play-badge.svg){:height="500px" width="200px" .m-2}](https://play.google.com/store/apps/details?id=com.adventuretravelapp){: .btn-white target="_blank"} -->
 
 Purchase or more info | [Adventure Travel](https://codecanyon.net/item/adventure-travel-react-native-app/27231612){: target="_blank"}
 Documentation | https://docs.svalbard.dev
@@ -62,6 +59,5 @@ Issues | [https://github.com/svalbard-app/adventureTravel/issues](https://github
 Contact | [app@svalbard.dev](mailto:app@svalbard.dev)
 
 ![](/images/react-native.png){:width="300px"}
-<!-- ![](/images/Screen5.jpg){:height="50px" width="210px" .m-1} -->
 
 Continue reading the next session to [get started](/docs/getting-started).
