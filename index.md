@@ -9,8 +9,6 @@ has_toc: true
 
 Version: 1.0.2
 {: .label .label-green }
-
-
 Updated: 07/13/2020
 {: .label .label-purple }
 
