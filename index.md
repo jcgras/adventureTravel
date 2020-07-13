@@ -7,16 +7,12 @@ has_toc: true
 # Adventure Travel - React Native App
 {: .no_toc }
 
-<dl>
-    <dt>
-        Version: 1.0.2
-        {: .label .label-green }
-    </dt>
-    <dd>
-        Updated: 07/13/2020
-        {: .label .label-purple }
-    </dd>
-</dl>
+Version: 1.0.2
+{: .label .label-green }
+
+
+Updated: 07/13/2020
+{: .label .label-purple }
 
 With **Adventure Travel App** we want to offer more than a set of components and styles. We have carefully created a project where we aim to provide a simple structure for any kind of React Native project, allowing you to adapt, reuse and create react native components easily.
 
