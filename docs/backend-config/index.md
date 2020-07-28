@@ -43,7 +43,7 @@ If you are working with the iOS platform it's necesary to register a new iOS App
 
 In the registration wizard you must fill out the **iOS bundle ID** of the application (located in the General tab in Xcode), for this project would be: _dev.svalbard.app_. Later, for your particular project, you must use the **Bundle Identifier** you created your project with, but to test the app we will use this value first.
 
-![Image](/images/addiOSApp.png)
+![Image](/images/addiOSAppConsole.png)
 
 To finish download the generated configuration file **google-service.plist** and include it into the project from Xcode. This file contains all the information to link our app with the created project, allowing you to access any of the Firebase services.
 
