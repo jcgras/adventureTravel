@@ -54,6 +54,7 @@ Documentation | https://docs.svalbard.dev
 iOS demo | [https://apps.apple.com/us/app/adventure-travel-project/id1521392632](https://apps.apple.com/us/app/adventure-travel-project/id1521392632){: target="_blank"}
 Android demo | [https://play.google.com/store/apps/details?id=com.adventuretravelapp](https://play.google.com/store/apps/details?id=com.adventuretravelapp){: target="_blank"}
 Issues | [https://github.com/svalbard-app/adventureTravel/issues](https://github.com/svalbard-app/adventureTravel/issues){: target="_blank"}
+Changelog | [https://github.com/svalbard-app/adventureTravel#changelog](https://github.com/svalbard-app/adventureTravel#changelog){: target="_blank"}
 Contact | [app@svalbard.dev](mailto:app@svalbard.dev)
 
 ![](/images/react-native.png){:width="300px"}
