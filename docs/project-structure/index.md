@@ -55,6 +55,7 @@ You have probably noticed that in each of these modules the files `index.js` and
  ┃ ┣ Device.js
  ┃ ┣ Images.js
  ┃ ┣ RealtimeDatabase.js
+ ┃ ┣ DatabaseSeeder.js
  ┃ ┣ Styles.js
  ┃ ┣ Util.js
  ┃ ┣ index.js
@@ -70,14 +71,26 @@ In the `index.js` file we must include all the module reference (imports) and th
 
 _/src/common/index.js_
 ``` js
-import Styles from "./Styles";
-import Color from "./Color";
-import Device from "./Device";
-import Images from "./Images";
-import Coordinates from "./Coordinates";
-import Util from "./Util";
+import {Styles, FontSize} from './Styles';
+import Color from './Color';
+import Device from './Device';
+import Images from './Images';
+import RealtimeDatabase from './RealtimeDatabase';
+import DatabaseSeeder from './DatabaseSeeder';
+import Util from './Util';
+import GoogleAPIs from './GoogleAPIs';
 
-export { Styles, Color, Device, Images, Coordinates, Util }
+export {
+  Styles,
+  Color,
+  FontSize,
+  Device,
+  Images,
+  RealtimeDatabase,
+  DatabaseSeeder,
+  Util,
+  GoogleAPIs,
+};
 ```
 Also using the `package.json` file we can define the name of the package as global and use it anywhere in the project.
 

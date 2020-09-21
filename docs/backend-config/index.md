@@ -10,7 +10,8 @@ has_toc: true
 As part of the architecture we have added the use of **Firebase** as a complement for backend operations. Firebase is a Google Backend-as-a-Service (BaaS) platform that helps you build, improve and grow your applications. Firebase offers a wide range of features, but for the purposes of this project we will focus on the following services:
 
 * Firebase Authentication (For our user authentication service)
-* Firebase Realtime Database (As database)
+* Firebase Realtime Database (As realtime database)
+* Cloud Firestore (As database)
 * Cloud Messaging (For Push Notifications)
 
 To start working on the project, it is necessary to first configure a new application from **Firebase Console platform**. Below we describe all the steps to configure the Firebase based backend.
@@ -82,15 +83,22 @@ With the Email/Password provider the users can sign up using their email address
 ---
 ## Firebase Realtime Database
 
-In this app we use some data as a constant value in the local storage, but we also include a remote database system based on **Firebase Realtime Database** (FRD) to store bookmarks, user information and bookings. With the introduction of FRD we hope you will be able to use it plainly in your project for all the data you need to store permanently.
-
-When you connect your app to FRD, you’re actually connecting through a WebSocket. WebSockets are much faster than the HTTP protocol, you don’t have to make individual WebSocket calls, because a single socket connection is enough. This allows all your data to be automatically synchronised through that single WebSocket. When you save a change in data, all connected clients receive the updated data almost instantly.
+In some cases you may need to handle data that requires realtime updating to be displayed on different devices at the same time. That is why we have incorporated **Firebase Realtime Database** (FRD) to store bookmarks, user information and bookings. When you connect your app to FRD, you’re actually connecting through a WebSocket. WebSockets are much faster than the HTTP protocol, you don’t have to make individual WebSocket calls, because a single socket connection is enough. This allows all your data to be automatically synchronised through that single WebSocket. When you save a change in data, all connected clients receive the updated data almost instantly.
 
 ![Image](/images/firebaseRealtimeDatabase.png)
 
-For this project, or if you want to include it later in your own application, it’s necessary to create a Firebase Realtime Database. To do this you just have to go to the **Database** menu from [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"} and then scroll down to the **Real Time Database** option and click on **Create Database** button. Then select the option _Start in test mode_, just to start using it, later you must include some validation rules for a better security.
+For this project, or if you want to include it later in your own application, it’s necessary to create a Firebase Realtime Database. To do this just go to the **Realtime Database** menu from [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"} and click on **Create Database** button. Then select the option _Start in test mode_, just to start using it, later you must include some validation rules for a better security.
 
 ![Image](/images/CreatingFirebaseDB.png)
+
+With the introduction of this remote database system we hope you will be able to use it plainly in your project for all the data you need to store and synchronize in realtime.
+
+---
+## Cloud Firestore
+
+There are also data that may not require updating in real time and just run the typical CRUD (Create, Read, Update, Delete) operations of a database without any realtime subscription. In this case we also use **Cloud Firestore** to store application data such as experiences, categories and popular sites. To start using Firestore in your proyect go to the **Cloud Firestore** menu from [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"} and click on **Create Database** button. Then select the option _Start in test mode_, just to start using it, later you must include some validation rules for a better security.
+
+![Image](/images/CreatingFirestoreDB.png)
 
 ---
 At this point we should have all the backend configuration completed, then we can move on to make other [adjustments to the app](/docs/app-config) code and start running it.

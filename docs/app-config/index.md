@@ -111,6 +111,12 @@ yarn android
 ```
 Remember that you must have an Android simulator installed correctly for the application to run successfully. In case you have any problem running the app for the first time open with Android Studio the generated android project, located in the **/android** folder of the project. From Android Studio verify that the sync runs correctly from: **File->Sync Project with Gradle Files** menu and also that you have a simulator configured. 
 
+### Running for the first time
+
+The first time you run the application, test data will be registered in the **Cloud Firestore database** (previously registered in the [backend configuration](/docs/backend-config/#cloud-firestore)). This way, experiences, categories and popular places will be registered in the database, which can be used as a starting point to add your own data, either from the **Firebase Console** or from a third App.
+
+![Image](/images/cloudFirestoreData.png)
+
 ---
 ## Script commands
 

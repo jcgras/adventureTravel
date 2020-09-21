@@ -7,7 +7,7 @@ has_toc: true
 # Adventure Travel - React Native App
 {: .no_toc }
 
-Version: 1.0.4, Updated: 07/31/2020
+Version: 1.0.5, Updated: 09/21/2020
 {: .label .label-green }
 
 With **Adventure Travel App** we want to offer more than a set of components and styles. We have carefully created a project where we aim to provide a simple structure for any kind of React Native project, allowing you to adapt, reuse and create react native components easily.
@@ -23,6 +23,7 @@ For this project we have been inspired by an Adventure Travel Agency, however, w
 - ECMAScript/JavaScript code standardization, format and validation
 - Backend integration with Firebase
 - Realtime Database (Store and sync remote data)
+- Search by nearby locations
 - Firebase Authentication
 - Google Maps integration
 - Flexible variable uses via config file

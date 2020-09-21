@@ -11,6 +11,7 @@
  ┃ ┣ Device.js
  ┃ ┣ Images.js
  ┃ ┣ RealtimeDatabase.js
+ ┃ ┣ DatabaseSeeder.js
  ┃ ┣ Styles.js
  ┃ ┣ Util.js
  ┃ ┣ index.js
@@ -20,14 +21,26 @@
  ┣ 📁 redux
  ┣ 📁 screens
  ┗ 📦 package.json
-</code></pre></div></div> <p>In the <code class="highlighter-rouge">index.js</code> file we must include all the module reference (imports) and then export it to make it visible outside the folder.</p> <p><em>/src/common/index.js</em></p> <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Styles</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./Styles</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Color</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./Color</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Device</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./Device</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Images</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./Images</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Coordinates</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./Coordinates</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Util</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./Util</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div> <p>In the <code class="highlighter-rouge">index.js</code> file we must include all the module reference (imports) and then export it to make it visible outside the folder.</p> <p><em>/src/common/index.js</em></p> <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Styles</span><span class="p">,</span> <span class="nx">FontSize</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Styles</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Color</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Color</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Device</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Device</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Images</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Images</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">RealtimeDatabase</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./RealtimeDatabase</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">DatabaseSeeder</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./DatabaseSeeder</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Util</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Util</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">GoogleAPIs</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./GoogleAPIs</span><span class="dl">'</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="p">{</span> <span class="nx">Styles</span><span class="p">,</span> <span class="nx">Color</span><span class="p">,</span> <span class="nx">Device</span><span class="p">,</span> <span class="nx">Images</span><span class="p">,</span> <span class="nx">Coordinates</span><span class="p">,</span> <span class="nx">Util</span> <span class="p">}</span>
+<span class="k">export</span> <span class="p">{</span>
+  <span class="nx">Styles</span><span class="p">,</span>
+  <span class="nx">Color</span><span class="p">,</span>
+  <span class="nx">FontSize</span><span class="p">,</span>
+  <span class="nx">Device</span><span class="p">,</span>
+  <span class="nx">Images</span><span class="p">,</span>
+  <span class="nx">RealtimeDatabase</span><span class="p">,</span>
+  <span class="nx">DatabaseSeeder</span><span class="p">,</span>
+  <span class="nx">Util</span><span class="p">,</span>
+  <span class="nx">GoogleAPIs</span><span class="p">,</span>
+<span class="p">};</span>
 </code></pre></div></div> <p>Also using the <code class="highlighter-rouge">package.json</code> file we can define the name of the package as global and use it anywhere in the project.</p> <p><em>/src/common/package.json</em></p> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@common"</span><span class="w">
 </span><span class="p">}</span><span class="w">
