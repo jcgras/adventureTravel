@@ -113,7 +113,7 @@ Remember that you must have an Android simulator installed correctly for the app
 
 ### Running for the first time
 
-The first time you run the application, test data will be registered in the **Cloud Firestore database** (previously registered in the [backend configuration](/docs/backend-config/#cloud-firestore)). This way, experiences, categories and popular places will be registered in the database, which can be used as a starting point to add your own data, either from the **Firebase Console** or from a third App.
+The first time you run the application, sample data will be registered in the **Cloud Firestore database** (previously registered in the [backend configuration](/docs/backend-config/#cloud-firestore)). This way, experiences, categories and popular places will be registered in the database, which can be used as a starting point to add your own data, either from the **Firebase Console** or from a third App.
 
 ![Image](/images/cloudFirestoreData.png)
 
