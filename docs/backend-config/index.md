@@ -73,12 +73,28 @@ Skip the next steps (we already have done this configuration in the app) and con
 
 As authentication method we use the **Firebase Authentication** Email/Password provider, so it must be activated from the Firebase Console.
 
-> Firebase Authentication provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, popular federated identity providers like Google, Facebook and Twitter, and more. - [Firebase Authentication Docs![icon](/images/ext-link.png)](https://firebase.google.com/docs/auth){:target="_blank"}
+> Firebase Authentication provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, popular federated identity providers like Google, Apple, Facebook and Twitter, and more. - [Firebase Authentication Docs![icon](/images/ext-link.png)](https://firebase.google.com/docs/auth){:target="_blank"}
 {: .text-grey-dk-000 }
 
 With the Email/Password provider the users can sign up using their email address and password. Firebase Authentication also provide email address verification, password recovery, and email address change primitives. To activate the Email/Password provider go to the **Authentication** menu of your project in [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"}. Then select the **Sign-in method** tab and activate the Email/Password provider to start using this authentication method in the app.
 
 ![Image](/images/FirebaseAuthentication.png)
+
+### Apple Sign-in
+
+For iOS devices you can also activate authentication with Apple Sign-in. With Apple Sign-in users can access the App using their Apple Account and hiding their email address. To activate Apple Sign-in you must go to the **Authentication** menu of your project in [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"}. Then select the **Sign-in method** tab and activate the **Apple** provider to start using this authentication method in the app.
+
+![Image](/images/apple-signin-firebase.png)
+
+To complete the activation of **Apple Sign-in** you must go to the [Apple Developer Program![icon](/images/ext-link.png)](https://developer.apple.com){:target="_blank"} site using your apple developer account and go to the **Account** menu and then to [**Certificates, IDs & Profiles**![icon](/images/ext-link.png)](https://developer.apple.com/account/resources/certificates/list){:target="_blank"}. Select **Identifiers** from the menu on the left to add/edit your app identifier.
+
+![Image](/images/identifiers.png)
+
+If your app identifier is not created yet you can click on the **plus** icon to add your app identifier. In this case you must register an **App ID**, specify the **Bundle ID** and check the option for **Sign In with Apple**. If your App ID already exists select it and go to **Sign In with Apple** and check it.
+
+![Image](/images/apple-sign-in.png)
+
+In this way you have already configured the Sign in with Apple. If you do not want to include this option you can remove the **AppleButton** from the **LoginScreen** screen located in _/src/screens/loginScreen/index.js_.
 
 ---
 ## Firebase Realtime Database
