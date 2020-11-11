@@ -7,7 +7,7 @@ has_toc: true
 # Adventure Travel - React Native App
 {: .no_toc }
 
-Version: 1.0.5, Updated: 09/21/2020
+Version: 1.0.6, Updated: 11/11/2020
 {: .label .label-green }
 
 With **Adventure Travel App** we want to offer more than a set of components and styles. We have carefully created a project where we aim to provide a simple structure for any kind of React Native project, allowing you to adapt, reuse and create react native components easily.
@@ -30,7 +30,7 @@ For this project we have been inspired by an Adventure Travel Agency, however, w
 - Flexible variable uses via config file
 - Push Notifications
 - Biometric Authentication
-<!-- - Social logins via facebook or Google -->
+- Apple Sign-In
 
 ## ..and also:
 
