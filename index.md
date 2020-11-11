@@ -23,8 +23,9 @@ For this project we have been inspired by an Adventure Travel Agency, however, w
 - ECMAScript/JavaScript code standardization, format and validation
 - Backend integration with Firebase
 - Realtime Database (Store and sync remote data)
-- Search by nearby locations
+- Cloud Firestore (Store remote data)
 - Firebase Authentication
+- Locations searching
 - Google Maps integration
 - Flexible variable uses via config file
 - Push Notifications

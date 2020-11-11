@@ -443,3 +443,37 @@ removeBookmark = () => {
     this.props.deleteBookmark(this.props.experienceId)
 }
 ```
+
+### Search component
+
+From version 1.0.5 you can make dynamic searches of Experiences, we incorporated geolocation-based search methods for dynamic search results. We have added a simple algorithm to search for locations based on geohash coordinates, which you may find useful in your project.
+
+**What is Geohashing anyway?**
+
+Geohashing is a geocoding method used to encode geographic coordinates (latitude and longitude) into a short string of digits and letters delineating an area on a map, which is called a cell, with varying resolutions. The more characters in the string, the more precise the location. _[PubNub![icon](/images/ext-link.png)](https://www.pubnub.com/learn/glossary/what-is-geohashing/){:target="_blank"}_
+
+In this case a **location** (latitude and longitude) and a **geohash** (the coding of **location**) has been added to each experience, stored in the _experiences_ collection.
+
+![Image](/images/firestore_geohash.png)
+
+To codify a geohash from coordinates you can use an online tool like [Geohashes Movable Type Scripts![icon](/images/ext-link.png)](https://www.movable-type.co.uk/scripts/geohash.html){:target="_blank"} or for React Native, use the **ngeohash** library:
+
+```js
+import geohash from 'ngeohash';
+
+const lat = 38.7437396;
+const lon = -9.230243;
+const geohash = geohash.encode(lat, lon);
+console.log(geohash); // output: eyckmv
+```
+
+With a range of geohash codes (_lower_ and _upper_) it is possible to do a search by a single _string_ index (`geohash`) in the database, where the closest geohashes in string indicate the proximity in distance:
+
+```js
+// Search of experiences in database according to a range of geohahes
+const querySnapshot = await firestore()
+    .collection('experiences')
+    .where('geohash', '>=', geoRange.lower)
+    .where('geohash', '<=', geoRange.upper)
+    .get();
+```
