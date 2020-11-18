@@ -103,7 +103,7 @@ In some cases you may need to handle data that requires realtime updating to be 
 
 ![Image](/images/firebaseRealtimeDatabase.png)
 
-For this project, or if you want to include it later in your own application, it’s necessary to create a Firebase Realtime Database. To do this just go to the **Realtime Database** menu from [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"} and click on **Create Database** button. Then select the option _Start in test mode_, just to start using it, later you must include some validation rules for a better security.
+For this project, or if you want to include it later in your own application, it’s necessary to create a Firebase Realtime Database. To do this just go to the **Realtime Database** menu from [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"} and click on **Create Database** button. Then select the option _Start in test mode_, just to start using it, later you must include some [validation rules](/docs/firebase-database-rules/#realtime-database-rules){:target="_blank"} for a better security.
 
 ![Image](/images/CreatingFirebaseDB.png)
 
@@ -112,7 +112,7 @@ With the introduction of this remote database system we hope you will be able to
 ---
 ## Cloud Firestore
 
-There are also data that may not require updating in real time and just run the typical CRUD (Create, Read, Update, Delete) operations of a database without any realtime subscription. In this case we also use **Cloud Firestore** to store application data such as experiences, categories and popular sites. To start using Firestore in your proyect go to the **Cloud Firestore** menu from [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"} and click on **Create Database** button. Then select the option _Start in test mode_, just to start using it, later you must include some validation rules for a better security.
+There are also data that may not require updating in real time and just run the typical CRUD (Create, Read, Update, Delete) operations of a database without any realtime subscription. In this case we also use **Cloud Firestore** to store application data such as experiences, categories and popular sites. To start using Firestore in your proyect go to the **Cloud Firestore** menu from [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"} and click on **Create Database** button. Then select the option _Start in test mode_, just to start using it, later you must include some [validation rules](/docs/firebase-database-rules/#cloud-firestore-security-rules){:target="_blank"} for a better security.
 
 ![Image](/images/CreatingFirestoreDB.png)
 
