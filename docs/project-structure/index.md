@@ -39,7 +39,7 @@ To get into context, let's start analyzing the project from the JavaScript sourc
 
 Module | Description
 ---------|----------
- _common_ | It contains the common elements such as global styles, colors, utils, etc.
+ _common_ | It contains the common elements such as global styles, colors, utils, database access, etc.
  _components_ | Here we place the application components and their related styles.
  _images_ | It contains the static images used in the project such as illustrations, logos, etc.
  _navigation_ | This module contains the components related to navigation. It contains the paths and references to screens, modals and tabs.
@@ -55,7 +55,7 @@ You have probably noticed that in each of these modules the files `index.js` and
  ┃ ┣ Device.js
  ┃ ┣ Images.js
  ┃ ┣ RealtimeDatabase.js
- ┃ ┣ DatabaseSeeder.js
+ ┃ ┣ Firestore.js
  ┃ ┣ Styles.js
  ┃ ┣ Util.js
  ┃ ┣ index.js
@@ -76,7 +76,7 @@ import Color from './Color';
 import Device from './Device';
 import Images from './Images';
 import RealtimeDatabase from './RealtimeDatabase';
-import DatabaseSeeder from './DatabaseSeeder';
+import Firestore from './Firestore';
 import Util from './Util';
 import GoogleAPIs from './GoogleAPIs';
 
@@ -87,7 +87,7 @@ export {
   Device,
   Images,
   RealtimeDatabase,
-  DatabaseSeeder,
+  Firestore,
   Util,
   GoogleAPIs,
 };

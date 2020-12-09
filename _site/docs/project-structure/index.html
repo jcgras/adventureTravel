@@ -5,13 +5,13 @@
  ┣ 📁 redux
  ┣ 📁 screens
  ┗ 📦 package.json
-</code></pre></div></div> <div class="table-wrapper"><table> <thead> <tr> <th>Module</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td><em>common</em></td> <td>It contains the common elements such as global styles, colors, utils, etc.</td> </tr> <tr> <td><em>components</em></td> <td>Here we place the application components and their related styles.</td> </tr> <tr> <td><em>images</em></td> <td>It contains the static images used in the project such as illustrations, logos, etc.</td> </tr> <tr> <td><em>navigation</em></td> <td>This module contains the components related to navigation. It contains the paths and references to screens, modals and tabs.</td> </tr> <tr> <td><em>redux</em></td> <td>It contains the elements related to Redux, such as: actions, reducers, middlewares and the store configuration.</td> </tr> <tr> <td><em>screens</em></td> <td>It contains the components relating to the application screens and their related styles.</td> </tr> </tbody> </table></div> <p>You have probably noticed that in each of these modules the files <code class="highlighter-rouge">index.js</code> and <code class="highlighter-rouge">package.json</code> are included. Both files are used to export and define the module with global access within the project.</p> <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>📂 src
+</code></pre></div></div> <div class="table-wrapper"><table> <thead> <tr> <th>Module</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td><em>common</em></td> <td>It contains the common elements such as global styles, colors, utils, database access, etc.</td> </tr> <tr> <td><em>components</em></td> <td>Here we place the application components and their related styles.</td> </tr> <tr> <td><em>images</em></td> <td>It contains the static images used in the project such as illustrations, logos, etc.</td> </tr> <tr> <td><em>navigation</em></td> <td>This module contains the components related to navigation. It contains the paths and references to screens, modals and tabs.</td> </tr> <tr> <td><em>redux</em></td> <td>It contains the elements related to Redux, such as: actions, reducers, middlewares and the store configuration.</td> </tr> <tr> <td><em>screens</em></td> <td>It contains the components relating to the application screens and their related styles.</td> </tr> </tbody> </table></div> <p>You have probably noticed that in each of these modules the files <code class="highlighter-rouge">index.js</code> and <code class="highlighter-rouge">package.json</code> are included. Both files are used to export and define the module with global access within the project.</p> <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>📂 src
  ┣ 📂 common
  ┃ ┣ Color.js
  ┃ ┣ Device.js
  ┃ ┣ Images.js
  ┃ ┣ RealtimeDatabase.js
- ┃ ┣ DatabaseSeeder.js
+ ┃ ┣ Firestore.js
  ┃ ┣ Styles.js
  ┃ ┣ Util.js
  ┃ ┣ index.js
@@ -26,7 +26,7 @@
 <span class="k">import</span> <span class="nx">Device</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Device</span><span class="dl">'</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">Images</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Images</span><span class="dl">'</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">RealtimeDatabase</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./RealtimeDatabase</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">DatabaseSeeder</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./DatabaseSeeder</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Firestore</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Firestore</span><span class="dl">'</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">Util</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Util</span><span class="dl">'</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">GoogleAPIs</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./GoogleAPIs</span><span class="dl">'</span><span class="p">;</span>
 
@@ -37,7 +37,7 @@
   <span class="nx">Device</span><span class="p">,</span>
   <span class="nx">Images</span><span class="p">,</span>
   <span class="nx">RealtimeDatabase</span><span class="p">,</span>
-  <span class="nx">DatabaseSeeder</span><span class="p">,</span>
+  <span class="nx">Firestore</span><span class="p">,</span>
   <span class="nx">Util</span><span class="p">,</span>
   <span class="nx">GoogleAPIs</span><span class="p">,</span>
 <span class="p">};</span>
