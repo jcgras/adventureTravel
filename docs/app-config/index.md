@@ -52,32 +52,34 @@ For **IOS** based applications you must edit **/ios/adventureTravelApp/AppDelega
 
 _/ios/adventureTravelApp/AppDelegate.m_
 
-``` objc
-.....
-#import <React/RCTRootView.h>
-#import <GoogleMaps/GoogleMaps.h>
+```diff
+ ...
+ #import <React/RCTRootView.h>
+ #import <GoogleMaps/GoogleMaps.h>
 
-@implementation AppDelegate
+ @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-  if ([FIRApp defaultApp] == nil) {
-    [FIRApp configure];
-  }
-  [GMSServices provideAPIKey:@"YOUR_API_KEY_VALUE_HERE"]; // add this line using the api key obtained from Google Console
-  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
-.....
+ - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+ {
+   if ([FIRApp defaultApp] == nil) {
+     [FIRApp configure];
+   }
++  [GMSServices provideAPIKey:@"YOUR_API_KEY_VALUE_HERE"];
+   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+   ...
 ```
 
-For **Android** based applications you must edit **/android/app/src/main/AndroidManifest.xml** (line: 13) file and add the value of the api key in the line indicated:
+For **Android** based applications you must edit **/android/app/src/main/AndroidManifest.xml** file and add the value of the api key in the line indicated:
 
 _/android/app/src/main/AndroidManifest.xml_
 
-``` xml
-.....
-<meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR_API_KEY_VALUE_HERE"/>
-<uses-library android:name="org.apache.http.legacy" android:required="false"/>
-.....
+``` diff
+     ...
+     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
++    <meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR_API_KEY_VALUE_HERE"/>
+     <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+ </application>
+ ...
 ```
 
 ---
@@ -109,7 +111,7 @@ If you're working in an Android environment, to start the app you only have to r
 ```
 yarn android
 ```
-Remember that you must have an Android simulator installed correctly for the application to run successfully. In case you have any problem running the app for the first time open with Android Studio the generated android project, located in the **/android** folder of the project. From Android Studio verify that the sync runs correctly from: **File->Sync Project with Gradle Files** menu and also that you have a simulator configured. 
+Remember that you must have an Android simulator installed correctly for the application to run successfully. In case you have any problem running the app for the first time open with **Android Studio** the generated android project, located in the **/android** folder of the project. From Android Studio verify that the sync runs correctly from: **File->Sync Project with Gradle Files** menu and also that you have a simulator configured. 
 
 ### Running for the first time
 
@@ -124,7 +126,7 @@ In addition to the default commands, included in the global `package.json` file,
 
 _/package.json_
  ```js
- // .......
+ ...
  "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -134,7 +136,7 @@ _/package.json_
     "lint:fix": "eslint --fix .",
     "clean": "\\rm -fr ./node_modules dist/* ios/build ios/Pods ios/KScoreApp.xcarchive android/build android/app/build public/js public/assets && yarn"
   },
-  // .......
+  ...
  ```
 
 ---
