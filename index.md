@@ -7,7 +7,7 @@ has_toc: true
 # Adventure Travel - React Native App
 {: .no_toc }
 
-Version: 1.1.0, Updated: 08/16/2021
+Version: 1.1.1, Updated: 11/13/2021
 {: .label .label-green }
 
 With **Adventure Travel App** we want to offer more than a set of components and styles. We have carefully created a project where we aim to provide a simple structure for any kind of React Native project, allowing you to adapt, reuse and create react native components easily.
@@ -19,6 +19,7 @@ For this project we have been inspired by an Adventure Travel Agency, however, w
 
 - Support for iOS and Android
 - React Native with JSX
+- Hooks and Classes approach
 - Redux
 - ECMAScript/JavaScript code standardization, format and validation
 - Backend integration with Firebase
@@ -59,6 +60,6 @@ Issues | [https://github.com/svalbard-app/adventureTravel/issues](https://github
 Changelog | [https://github.com/svalbard-app/adventureTravel#changelog](https://github.com/svalbard-app/adventureTravel#changelog){: target="_blank"}
 Contact | [app@svalbard.dev](mailto:app@svalbard.dev)
 
-![](https://adventure.svalbard.dev/assets/images/screens/react-native.png){:width="300px"}
+![](https://adventure.svalbard.dev/assets/images/screens/react-native-hooks.png){:width="300px"}
 
 Continue reading the next session to [get started](/docs/getting-started).

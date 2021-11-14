@@ -125,13 +125,12 @@ Whenever you need to use a static image just reference `Images` from the `@commo
 ``` js
 import { Images } from "@common";
 
-render() {
-    return (
-        <View>
-            <Image source={Images.logoWhite} />
-        </View>
-    );
-}
+//....
+return (
+    <View>
+        <Image source={Images.logoWhite} />
+    </View>
+);
 ```
 ---
 ## Redux, one state to rule them all
@@ -334,13 +333,15 @@ export {persistor, store};
 Below, we specify how the store is connected to the user interface.
 
 ---
-## Components
+# Components
 
-As you probably know, React bases its architecture on components. That is: each piece of an app is handled as an isolated component (class or Hooks) where its own states, properties, styles and the access to the store are handled. With **Adventure Travel** you have a variety ready-to-use components to create your own mobile application. Components like `ButtonGradient`, `CardPopular` or `ImageCollage` can be found in the **/src/components** folder. Similarly we have created a folder to organize the components relating to the screens of the app: **/src/screens**. In this way we separate more atomic components like `ButtonGradient` from the more complex ones that compose a screen.
+As you probably know, React bases its architecture on components. That is: each piece of an app is handled as an isolated component (class or Hook) where its own states, properties, styles and the access to the store are handled. With **Adventure Travel** you have a variety ready-to-use components to create your own mobile application from both approaches: Hooks or Classes. Components like `ButtonGradient`, `CardPopular` or `ImageCollage` can be found in the **/src/components** folder. Similarly we have created a folder to organize the components relating to the screens of the app: **/src/screens**. In this way we separate more atomic components like `ButtonGradient` from the more complex ones that compose a screen.
 
-Basically each component extends from `React.PureComponent` and implements a `render()` method where the UI is returned in `jsx` format.
+## Class approach
 
-_/src/components/ButtonBookmark/index.js_
+From a <u>Class approach</u>, each component extends from `React.PureComponent` and implements a `render()` method where the UI is returned in `jsx` format. In each of these components we also include the use of `propTypes` to declare the properties required by the component and its data type. When props are passed to a component, they are checked against the type definitions configured in the propTypes property. When an invalid value is passed to a property, a warning signal is displayed on the console. To learn more about how you can use `prop-types` and all the available validators, see their [documentation![icon](/images/ext-link.png)](https://github.com/facebook/prop-types/blob/master/README.md){:target="_blank"}.
+
+_/src/components/ButtonBookmark/index.js_ (Class approach)
 ```js
 import React from "react";
 import PropTypes from "prop-types";
@@ -348,6 +349,7 @@ import PropTypes from "prop-types";
 class ButtonBookmark extends React.PureComponent {
     constructor(props) {
         super(props);
+        // ...
     }
 
     render() {
@@ -371,11 +373,9 @@ const styles = StyleSheet.create({
 });
 ```
 
-In each component we also include the use of `propTypes` to declare the properties required by the component and its data type. When props are passed to a component, they are checked against the type definitions configured in the propTypes property. When an invalid value is passed for a prop, a warning is displayed on the console. To learn more about how you can use `prop-types` and all the available validators, see their [documentation![icon](/images/ext-link.png)](https://github.com/facebook/prop-types/blob/master/README.md){:target="_blank"}.
-
 Likewise, each component includes the reference to the component's own styles using `StyleSheet` within the same file. Using the constant `styles` you can access the styles inside each component.
 
-### Connecting the components to the store
+### Connecting the class components to the store
 
 To connect the Redux store to the UI (components) we use the `connect()` function from **react-redux**. This function provides to the connected component the data it requires from the store, and the functions it can use to send actions to the store. If the component requires the use of an action that handles the state of the application, such as `addBookmark`, we can import the functions that we had already created in the **actions** folder.
 
@@ -442,6 +442,81 @@ addBookmark = () => {
 removeBookmark = () => {
     this.props.deleteBookmark(this.props.experienceId)
 }
+```
+
+## Hooks approach
+
+<u>Hooks approach</u>, on the other hand, uses a function as a component with all properties included in a single object in the function parameter.
+
+_/src/components/ButtonBookmark/index.js_ (Hooks approach)
+```js
+import React, {useEffect} from "react";
+
+const ButtonBookmark = ({experienceId, name, confirm = false}) => {
+    useEffect(() => {
+        // ...
+    }, []);
+
+    return (
+        // ...
+    );
+};
+
+const styles = StyleSheet.create({
+    content: {
+        alignSelf: "flex-end",
+        alignItems: "flex-end",
+        padding: 8
+    },
+    icon: {
+        fontSize: 20
+    }
+});
+```
+
+Likewise, each component includes the reference to the component's own styles using `StyleSheet` within the same file. Using the constant `styles` you can access the styles inside each component.
+
+### Connecting the hook components to the store
+
+To connect the Redux store to the UI (components) we use the `useSelector` and `useDispatch` hooks from **react-redux**. The `useSelector` function provides to the component the data it requires from the store, and the `useDispatch` function it's used to send (dispatch) actions to the store. If the component requires the use of an action that handles the state of the application, such as `ADD_BOOKMARK`, you can import it from the **reducers** folder.
+
+```js
+import React from "react";
+import {ADD_BOOKMARK, DELETE_BOOKMARK} from '@redux/reducers/bookmarks';
+import {useSelector, useDispatch} from 'react-redux';
+```
+
+Then you can create a variable to access to any state of the application through the `useSelector` function. Also you can create a dispatch variable from the `useDispatch` hook to send an action to the store such as `ADD_BOOKMARK` or `DELETE_BOOKMARK`.
+
+_/src/components/ButtonBookmark/index.js_
+```js
+import React from "react";
+import {ADD_BOOKMARK, DELETE_BOOKMARK} from '@redux/reducers/bookmarks';
+import {useSelector, useDispatch} from 'react-redux';
+
+const ButtonBookmark = ({experienceId, name, confirm}) => {
+  const bookmarks = useSelector((state) => state.bookmarks);
+  const booked = bookmarks.some((b) => b.id === experienceId);
+  const experiences = useSelector((state) => state.explore.experienceResults.experiences);
+
+  const dispatch = useDispatch();
+
+  const handleAddBookmark = () => {
+    const experience = experiences.find((e) => e.id === experienceId);
+    dispatch({type: ADD_BOOKMARK, payload: experience});
+  };
+
+  const handleRemoveBookmark = () => {
+    if (confirm) {
+      confirmRemoveBookmark();
+    } else {
+      dispatch({type: DELETE_BOOKMARK, payload: experienceId});
+    }
+  };
+
+  return (
+      // ...
+  );
 ```
 
 ### Search component
