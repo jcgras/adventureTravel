@@ -497,7 +497,7 @@ cd ios
 pod update
 pod install
 cd ..
-yarn ios
+npm run ios
 ```
 
 Voilà!
@@ -506,6 +506,6 @@ Voilà!
 
 If you're working in an Android environment, to start the app you only have to run from the terminal:
 ```
-yarn android
+npm android
 ```
 Remember that you must have an Android simulator installed correctly for the application to run successfully. In case you have any problem running the app for the first time open with **Android Studio** the generated android project, located in the **/android** folder of the project. From Android Studio verify that the sync runs correctly from: **File->Sync Project with Gradle Files** menu and also that you have a simulator configured. 

@@ -39,27 +39,31 @@ Before you can add Firebase to your app, you need to create a Firebase project t
 
 Firebase automatically provides resources for your project. When the process completes, you’ll be taken to the overview page of your Firebase project.
 
+![Image](/images/createFirebaseProject.gif)
+
 ### Register your app with Firebase (iOS)
 
 If you are working with the iOS platform it’s necesary to register a new iOS App in Firebase. From the **Project Overview**, use the **Add app** option and then select the iOS icon to open the registration wizard.
 
 ![Image](/images/addApp.png)
 
-In the registration wizard you must fill out the **iOS bundle ID** of the application (located in the General tab in Xcode), for this project would be: _dev.svalbard.app_. However for your particular project you must set your own **Bundle Identifier**, here in Firebase and also in your project from Xcode.
+In the registration wizard you must fill out your **iOS bundle ID**, example: _com.myadventure.app_. This will be the identifier of your app and later you will have to put it in Xcode as well.
 
-> Read more: how to [Set up a name for your iOS App](/docs/migrating-to-your-brand/#ios){:target="_blank"}.
-{: .text-grey-dk-000 }
+![Image](/images/createIOSProject.gif)
 
-![Image](/images/addiOSAppConsole.png)
-
-To finish download the generated configuration file **GoogleService-Info.plist** and include it into the project from Xcode. This file contains all the information to link our app with the created project, allowing you to access any of the Firebase services.
+In the next step you must download the configuration file **GoogleService-Info.plist** and continue to the end to complete the app registration. This file contains all the information to link the app with the created project, allowing you to access any of the Firebase services.
 
 **Warning**: This file may be generated with **.xml** extension, however the project will not recognize this extension so it’s very important to change it to **.plist** after you download it.
 {: .text-red-100 }
 
-![Image](/images/downloadPList.png)
+The downloaded **GoogleService-Info.plist** file must be added to the project from Xcode. Inside Xcode you must also change the **Bundle Identifier**, the app **version** and the **build** number.
 
-Skip the next steps (we already have done this configuration in the app) and continues until the end of the wizard to finish with the app registration. After that you must setup the Firebase project to allow the authentication, create the databases and activate the push notifications (optional).
+![Image](/images/xcodeConfig.gif)
+
+---
+> If you want to migrate in depth to a new App, you can review: [Migrating to your own brand](/docs/migrating-to-your-brand){:target="_blank"}.
+{: .text-grey-dk-000 }
+---
 
 ### Register your app with Firebase (Android)
 
@@ -67,20 +71,30 @@ If you are working with the Android platform it’s necesary to register a new A
 
 ![Image](/images/addApp.png)
 
-In the registration wizard you must fill out the **Android package name** of the application (specified in the file: **/android/app/build.gradle**), for this project would be: _com.adventuretravelapp_. However for your particular project you must set your own **applicationId**, here in Firebase and also in your project from the **/android/app/build.gradle** file.
-
-> Read more: how to [Set up a name for your Android App](/docs/migrating-to-your-brand/#android){:target="_blank"}.
-{: .text-grey-dk-000 }
+In the registration wizard you must fill out an **Android package name** for your app, example: _com.adventuretravelapp_. This will be the identifier of your app and later you will also have to include it in the android project.
 
 ![Image](/images/addAndroidApp.png)
 
-To finish download the generated configuration file **google-service.json** and add it to the project inside the **/android/app/** directory. This file contains all the information to link our app with the created project, allowing you to access any of the Firebase services.
+Download the generated configuration file **google-service.json** and continue until the end of the wizard to complete the app registration in Firebase. This file contains all the information to link the app with the created project, allowing you to access any of the Firebase services.
 
 ![Image](/images/downloadJson.png)
 
-Skip the next steps (we already have done this configuration in the app) and continues until the end of the wizard to finish with the app registration. After that you must setup the Firebase project to allow the authentication, create the databases and activate the push notifications (optional).
+The downloaded **google-service.json** file must be added to the project inside the **/android/app/** directory. Then you can set the **Android package name** (**applicationId**) and **versionName** in the **_/android/app/build.gradle_** file.
 
----
+```js
+...
+defaultConfig {
+    applicationId "com.yoursuperbrand"
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode 1
+    versionName "1.0"
+}
+...
+```
+
+After that you must setup the Firebase project to allow the authentication, create the databases and activate the push notifications (optional).
+
 ## Firebase Authentication
 
 > Firebase Authentication provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, popular federated identity providers like Google, Apple, Facebook and Twitter, and more. - [Firebase Authentication Docs![icon](/images/ext-link.png)](https://firebase.google.com/docs/auth){:target="_blank"}
@@ -88,7 +102,7 @@ Skip the next steps (we already have done this configuration in the app) and con
 
 As authentication method we use **Email/Password** authentication provider, which allows users to register with their email address and password. Firebase Authentication also provide email address verification, password recovery, and email address change primitives. To activate the Email/Password provider go to the **Authentication** menu of your project in [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"}. Then select the **Sign-in method** tab and activate the Email/Password provider to start using this authentication method in the app.
 
-![Image](/images/FirebaseAuthentication.png)
+![Image](/images/configFirebaseAuth.gif)
 
 ### Apple Sign-in
 
@@ -115,7 +129,7 @@ In some cases you may need to handle data that requires realtime updating to be 
 
 For this project it’s necessary to create a FRD before running the app for the first time. To do this just go to the **Realtime Database** menu from [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"} and click on **Create Database** button. Then select the option _Start in test mode_, just to start using it, later you must include some [validation rules](/docs/firebase-database-rules/#realtime-database-rules){:target="_blank"} for a better security.
 
-![Image](/images/CreatingFirebaseDB.png)
+![Image](/images/configRealtimeDB.gif)
 
 With the introduction of this remote database system we hope you will be able to use it plainly in your project for all the data you need to store and synchronize in realtime.
 
@@ -124,7 +138,7 @@ With the introduction of this remote database system we hope you will be able to
 
 There are also data that may not require updating in real time and just run the typical CRUD (Create, Read, Update, Delete) operations of a database without any realtime subscription. In this case we also use **Cloud Firestore** to store application data such as experiences, categories and popular sites, therefore it’s required to create a Firestore database first. To create a Firestore database in your proyect go to the **Cloud Firestore** menu from [Firebase Console![icon](/images/ext-link.png)](https://console.firebase.google.com){:target="_blank"} and click on **Create Database** button. Then select the option _Start in test mode_, just to start using it, later you must include some [validation rules](/docs/firebase-database-rules/#cloud-firestore-security-rules){:target="_blank"} for a better security.
 
-![Image](/images/CreatingFirestoreDB.png)
+![Image](/images/configFirestore.gif)
 
 ---
 At this point we should have all the backend configuration completed, then we can move on to make other [adjustments to the app](/docs/app-config) code and start running it.

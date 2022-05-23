@@ -29,6 +29,8 @@ Google API offers an indispensable set of features that can be very useful as a 
 
 To start using the Google API services you must first create a (free) [Google Cloud Platform![icon](/images/ext-link.png)](https://console.cloud.google.com){:target="_blank"} account and follow these [steps![icon](/images/ext-link.png)](https://developers.google.com/maps/documentation/embed/get-api-key){:target="_blank"} to get, restrict and enable a Google API key. Once you get your API key, continue with the following statement to add it to the environment file.
 
+![Image](/images/configGoogleKey.gif)
+
 ### Enviroment variables
 
 If you need to use enviroment variables like URLs, API keys, usernames, passwords or any other parameter in your app, we include the `.env` file to store it. We use the **react-native-dotenv** [package![icon](/images/ext-link.png)](https://www.npmjs.com/package/react-native-dotenv){:target="_blank"} to import the configuration variables from a `.env` file. If you need to use the Google Map Service, for example, you must to include the `GOOGLE_API_KEY` variable with the API key value.
@@ -101,7 +103,7 @@ pod install
 Note that every time you add or update a node module you must execute this action to update the references in the iOS project. After the references are installed, go back to the project root folder and run the command to start the application:
 ```
 cd ..
-yarn ios
+npm run ios
 ```
 With this command you must generate the application for iOS and raise the simulator you have configured. If you have any problem when you start the app for the first time, try to run it from Xcode to validate the project configuration.
 
@@ -109,7 +111,7 @@ With this command you must generate the application for iOS and raise the simula
 
 If you're working in an Android environment, to start the app you only have to run from the terminal:
 ```
-yarn android
+npm run android
 ```
 Remember that you must have an Android simulator installed correctly for the application to run successfully. In case you have any problem running the app for the first time open with **Android Studio** the generated android project, located in the **/android** folder of the project. From Android Studio verify that the sync runs correctly from: **File->Sync Project with Gradle Files** menu and also that you have a simulator configured. 
 
@@ -122,7 +124,7 @@ The first time you run the application, sample data will be registered in the **
 ---
 ## Script commands
 
-In addition to the default commands, included in the global `package.json` file, we have added a few additional **yarn** commands to provide a quick access to useful tools for code maintenance. You can use, for example, the command `yarn clean` to delete the *node_modules*, auto-generated files and reinstall the *node_modules* again. This command can be useful when you have building errors or incompatibility between new installed modules. As we always say: feel free to add or change what you need, in this case any command.
+In addition to the default commands, included in the global `package.json` file, we have added a few additional **npm** commands to provide a quick access to useful tools for code maintenance. You can use, for example, the command `npm run clean` to delete the *node_modules*, auto-generated files and reinstall the *node_modules* again. This command can be useful when you have building errors or incompatibility between new installed modules. As we always say: feel free to add or change what you need, in this case any command.
 
 _/package.json_
  ```js
@@ -134,7 +136,7 @@ _/package.json_
     "test": "jest",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "clean": "\\rm -fr ./node_modules dist/* ios/build ios/Pods ios/KScoreApp.xcarchive android/build android/app/build public/js public/assets && yarn"
+    "clean": "\\rm -fr ./node_modules dist/* ios/build ios/Pods ios/KScoreApp.xcarchive android/build android/app/build public/js public/assets && npm install"
   },
   ...
  ```
@@ -155,11 +157,11 @@ _/.eslintrc_
     "extends": "@react-native-community"
 }
 ```
-Then, if you execute the command `yarn lint` from console a report is generated with the warnings and errors found in the whole project.
+Then, if you execute the command `npm run lint` from console a report is generated with the warnings and errors found in the whole project.
 
 ![Image](/images/eslint_terminal.png)
 
-You can also use the command `yarn lint:fix` to try to fix as many issues as possible. The fixes are made to the actual files themselves and only the remaining unfixed issues are output. You should keep in mind that not all problems can be fixed using this option.
+You can also use the command `npm run lint:fix` to try to fix as many issues as possible. The fixes are made to the actual files themselves and only the remaining unfixed issues are output. You should keep in mind that not all problems can be fixed using this option.
 
 ### Formatting the code
 
@@ -184,11 +186,11 @@ We have also added the rules for Prettier in the `.prettierrc` configuration fil
 }
 ```
 
-Now with this last configuration we can also get the unformatted errors using the same `yarn lint` command.
+Now with this last configuration we can also get the unformatted errors using the same `npm run lint` command.
 
 ![Image](/images/eslint_terminal1.png)
 
-This time, with the use of the `yarn lint:fix` command, the code will take the proper format, keeping the standard in all the source code.
+This time, with the use of the `npm run lint:fix` command, the code will take the proper format, keeping the standard in all the source code.
 
 **If you are using Visual Studio Code you should try the [ESLint extension![icon](/images/ext-link.png)](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint){:target="_blank"}. The extension will highlight the linter error right inside the editor, and you can disable or tweak the rule however you want.*
 {: .text-grey-dk-000 }
