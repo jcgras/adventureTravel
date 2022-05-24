@@ -30,7 +30,7 @@
 <span class="nx">service</span> <span class="nx">cloud</span><span class="p">.</span><span class="nx">firestore</span> <span class="p">{</span>
   <span class="nx">match</span> <span class="o">/</span><span class="nx">databases</span><span class="o">/</span><span class="p">{</span><span class="nx">database</span><span class="p">}</span><span class="sr">/documents </span><span class="err">{
 </span>    <span class="nx">match</span> <span class="o">/</span><span class="p">{</span><span class="nb">document</span><span class="o">=**</span><span class="p">}</span> <span class="p">{</span>
-      <span class="nx">allow</span> <span class="nx">read</span><span class="p">,</span> <span class="nx">write</span><span class="p">:</span> <span class="k">if</span> <span class="nx">request</span><span class="p">.</span><span class="nx">time</span> <span class="o">&lt;</span> <span class="nx">timestamp</span><span class="p">.</span><span class="nx">date</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+      <span class="nx">allow</span> <span class="nx">read</span><span class="p">,</span> <span class="na">write</span><span class="p">:</span> <span class="k">if</span> <span class="nx">request</span><span class="p">.</span><span class="nx">time</span> <span class="o">&lt;</span> <span class="nx">timestamp</span><span class="p">.</span><span class="nx">date</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -38,7 +38,7 @@
 <span class="nx">service</span> <span class="nx">cloud</span><span class="p">.</span><span class="nx">firestore</span> <span class="p">{</span>
   <span class="nx">match</span> <span class="o">/</span><span class="nx">databases</span><span class="o">/</span><span class="p">{</span><span class="nx">database</span><span class="p">}</span><span class="sr">/documents </span><span class="err">{
 </span>    <span class="nx">match</span> <span class="o">/</span><span class="p">{</span><span class="nb">document</span><span class="o">=**</span><span class="p">}</span> <span class="p">{</span>
-      <span class="nx">allow</span> <span class="nx">read</span><span class="p">:</span> <span class="k">if</span> <span class="nx">request</span><span class="p">.</span><span class="nx">auth</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="nx">allow</span> <span class="na">read</span><span class="p">:</span> <span class="k">if</span> <span class="nx">request</span><span class="p">.</span><span class="nx">auth</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>

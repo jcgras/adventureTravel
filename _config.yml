@@ -1,9 +1,7 @@
 # Build settings
-markdown: kramdown
-#theme: just-the-docs
-#remote_theme: just-the-docs/just-the-docs
-theme: architect
-remote_theme: pages-themes/architect@v0.2.0
+#markdown: kramdown
+theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
 heading_anchors: true
 # Aux links for the upper right navigation
 #aux_links:
