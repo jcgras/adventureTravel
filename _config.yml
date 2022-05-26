@@ -1,6 +1,6 @@
 # Build settings
 #markdown: kramdown
-theme: jekyll-theme-cayman
+theme: just-the-docs
 remote_theme: just-the-docs/just-the-docs
 heading_anchors: true
 # Aux links for the upper right navigation
