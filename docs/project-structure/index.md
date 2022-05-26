@@ -338,7 +338,7 @@ Below, we specify how the store is connected to the user interface.
 ---
 # Components
 
-As you probably know, React bases its architecture on components. That is: each piece of an app is handled as an isolated component (class or Hook) where its own states, properties, styles and the access to the store are handled. With **Adventure Travel** you have a variety ready-to-use components to create your own mobile application using <u>Hooks</u> approache. Components like `ButtonGradient`, `CardPopular` or `ImageCollage` can be found in the **/src/components** folder. Similarly we have created a folder to organize the components relating to the screens of the app: **/src/screens**. In this way we separate more atomic components like `ButtonGradient` from the more complex ones that compose a screen.
+As you probably know, React bases its architecture on components. That is: each piece of an app is handled as an isolated component (class or Hook) where its own states, properties, styles and the access to the store are handled. With **Adventure Travel** you have a variety ready-to-use components to create your own mobile application using <u>Hooks</u> approach. Components like `ButtonGradient`, `CardPopular` or `ImageCollage` can be found in the **/src/components** folder. Similarly we have created a folder to organize the components relating to the screens of the app: **/src/screens**. In this way we separate more atomic components like `ButtonGradient` from the more complex ones that compose a screen.
 
 ## Hooks approach
 
