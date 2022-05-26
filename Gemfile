@@ -1,2 +1,3 @@
+gem "webrick"
 gem "just-the-docs"
-gem "webrick", "~> 1.7"
+gem "webrick"

@@ -70,7 +70,7 @@ PLATFORMS
 
 DEPENDENCIES
   just-the-docs
-  webrick (~> 1.7)
+  webrick
 
 BUNDLED WITH
    2.1.4
