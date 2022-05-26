@@ -32,6 +32,7 @@ To get into context, let's start analyzing the project from the JavaScript sourc
  ┣ 📁 common
  ┣ 📁 components
  ┣ 📁 images
+ ┣ 📁 navigation
  ┣ 📁 redux
  ┣ 📁 screens
  ┗ 📦 package.json
@@ -43,7 +44,7 @@ Module | Description
  _components_ | Here we place the application components and their related styles.
  _images_ | It contains the static images used in the project such as illustrations, logos, etc.
  _navigation_ | This module contains the components related to navigation. It contains the paths and references to screens, modals and tabs.
- _redux_ | It contains the elements related to Redux, such as: actions, reducers, middlewares and the store configuration.
+ _redux_ | It contains the elements related to Redux: reducers, middlewares and the store configuration.
  _screens_ | It contains the components relating to the application screens and their related styles.
 
 You have probably noticed that in each of these modules the files `index.js` and `package.json` are included. Both files are used to export and define the module with global access within the project.
@@ -53,12 +54,13 @@ You have probably noticed that in each of these modules the files `index.js` and
  ┣ 📂 common
  ┃ ┣ Color.js
  ┃ ┣ Device.js
- ┃ ┣ Images.js
- ┃ ┣ RealtimeDatabase.js
  ┃ ┣ Firestore.js
+ ┃ ┣ GoogleAPIs.js
+ ┃ ┣ Images.js
+ ┃ ┣ index.js
+ ┃ ┣ RealtimeDatabase.js
  ┃ ┣ Styles.js
  ┃ ┣ Util.js
- ┃ ┣ index.js
  ┃ ┗ 📦 package.json
  ┣ 📁 components
  ┣ 📁 images
@@ -138,13 +140,13 @@ return (
 > Redux handles the entire application data flow within a single container while the previous state persists as well.
 {: .text-grey-dk-000 }
 
-As an important part of our architecture, we include Redux for application status management. With Redux we can have one application state as a global state ("Single source of truth"), that includes all application data -like bookings and bookmarks- but also temporary states like search results, search history or popular destinations.
+As an important part of the architecture, we have included **Redux** for application status management. With Redux we can have one application state as a global state ("Single source of truth"), that includes all application data -like bookings and bookmarks- but also temporary states like search results, search history or popular destinations. The whole state of the app is stored in an object tree inside a single store. The only way to change the state tree is to emit an action, an object describing what happened. ([Redux Documentation![icon](/images/ext-link.png)](https://redux.js.org/introduction/getting-started){:target="_blank"})
 
 ![Image](/images/redux_states.png)<br>
 _Tree view from [React Native Debugger![icon](/images/ext-link.png)](https://github.com/jhen0409/react-native-debugger){:target="_blank"}_
 {: .my-5 .fs-3 }
 
-To use this library (actually Redux is a library) a **redux** module was created that includes the **actions**, **middlewares**, **reducers** folders and the `store.js` file. Following the same logic as above, we have also included the `package.json` file for the module name.
+To use this library (actually Redux is a library) a **redux** module was created that includes the **middlewares**, **reducers** folders and the `store.js` file. Following the same logic as above, we have also included the `package.json` file for the module name.
 
 ```
 📂 src
@@ -152,7 +154,6 @@ To use this library (actually Redux is a library) a **redux** module was created
  ┣ 📁 components
  ┣ 📁 images
  ┣ 📂 redux
- ┃ ┣ 📁 actions
  ┃ ┣ 📁 middlewares
  ┃ ┣ 📁 reducers
  ┃ ┣ 📦 package.json
@@ -161,36 +162,16 @@ To use this library (actually Redux is a library) a **redux** module was created
  ┗ 📦 package.json
 ```
 
-### Actions
-
-The whole state of the app is stored in an object tree inside a single store. The only way to change the state tree is to emit an action, an object describing what happened. ([Redux Documentation![icon](/images/ext-link.png)](https://redux.js.org/introduction/getting-started){:target="_blank"})
-
-Following this principle, the **actions** folder has been created as a container for the action files of each data object. For example, we have included the `bookmarks.js` file for all actions that manage bookmarks objects (saved items). Inside this file we can find a set of functions (Action Creators) to manage each action, for example, adding a new bookmark. So actions are the information (Objects) and action creator are functions that return these actions.
-
-_/src/redux/actions/bookmarks.js_
-``` js
-const addBookmark = bookmark => {
-    return {
-        type: "ADD_BOOKMARK",
-        payload: bookmark
-    }
-}
-
-// .......
-
-export {
-    // .......
-    addBookmark
-};
-```
-
 ### Reducers
 
-Actions only tell what to do, but they don’t tell how to do, so reducers are the pure functions that take the current state and action and return the new state and tell the store how to do. To summarize, the reducers specify how the actions transform the state tree. We have included the **reducers** folder to group the reducers of each object.
+Reducers are the pure functions that take the current state and action and return the new state and tell the store how to do. To summarize, the reducers specify how the actions transform the state tree. We have included the **reducers** folder to group the reducers of each object.
 
 _/src/redux/reducers/bookmarks.js_
 ``` js
 const defaultState = [];
+export const ADD_BOOKMARK = 'ADD_BOOKMARK';
+export const DELETE_BOOKMARK = 'DELETE_BOOKMARK';
+export const CLEAR_BOOKMARKS = 'CLEAR_BOOKMARKS';
 
 function reducer(state = defaultState, {type, payload}) {
   switch (type) {
@@ -211,11 +192,33 @@ function reducer(state = defaultState, {type, payload}) {
 export default reducer;
 ```
 
+### Dispatching actions
+
+The only way to change the single source of data (state tree) is to emit an action. For this purpose we can use the React hook to trigger actions: `useDispatch` and the previous created reducers.
+
+``` js
+import {ADD_BOOKMARK} from '@redux/reducers/bookmarks';
+import {useDispatch} from 'react-redux';
+
+const dispatch = useDispatch();
+
+const experience = {
+    name: "Private Wine Country Tour",
+    place: "Sonoma, US",
+    destination: "San Francisco",
+    duration: "1.5 hours",
+    ...
+}
+
+dispatch({type: ADD_BOOKMARK, payload: experience});
+
+```
+
 ### Middlewares
 
 Basically a middleware is some code you can put between the framework receiving a request, and the framework generating a response. Redux middleware provides a third-party extension point between dispatching an action, and the moment it reaches the reducer. You can usually use Redux middleware for logging, crash reporting, talking to an asynchronous API, routing, and more. - [Redux Middleware![icon](/images/ext-link.png)](https://redux.js.org/advanced/middleware){:target="_blank"}
 
-In this architecture we have included a **middleware** to manage the synchronization between remote data (Firebase Realtime Database) and local data (local store). For example, when we call the action **ADD_BOOKMARK** this middleware will be invoked, the action will be detected and the information will be sent to the remote database. At the same time the action is executed and the local store is updated from the corresponding **reducer**.
+In this architecture we have included a **middleware** to manage the synchronization between remote data (Firebase Realtime Database) and local data (local store). For instance, when we dispatch the action **ADD_BOOKMARK** this middleware will be invoked, the action will be detected and the information will be sent to the remote database. At the same time the action is executed and the local store is updated from the corresponding **reducer**.
 
 _/src/redux/middlewares/firebase.js_
 ``` js
@@ -335,120 +338,13 @@ Below, we specify how the store is connected to the user interface.
 ---
 # Components
 
-As you probably know, React bases its architecture on components. That is: each piece of an app is handled as an isolated component (class or Hook) where its own states, properties, styles and the access to the store are handled. With **Adventure Travel** you have a variety ready-to-use components to create your own mobile application from both approaches: Hooks or Classes. Components like `ButtonGradient`, `CardPopular` or `ImageCollage` can be found in the **/src/components** folder. Similarly we have created a folder to organize the components relating to the screens of the app: **/src/screens**. In this way we separate more atomic components like `ButtonGradient` from the more complex ones that compose a screen.
-
-## Class approach
-
-From a <u>Class approach</u>, each component extends from `React.PureComponent` and implements a `render()` method where the UI is returned in `jsx` format. In each of these components we also include the use of `propTypes` to declare the properties required by the component and its data type. When props are passed to a component, they are checked against the type definitions configured in the propTypes property. When an invalid value is passed to a property, a warning signal is displayed on the console. To learn more about how you can use `prop-types` and all the available validators, see their [documentation![icon](/images/ext-link.png)](https://github.com/facebook/prop-types/blob/master/README.md){:target="_blank"}.
-
-_/src/components/ButtonBookmark/index.js_ (Class approach)
-```js
-import React from "react";
-import PropTypes from "prop-types";
-
-class ButtonBookmark extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        // ...
-    }
-
-    render() {
-        // ...
-    }
-}
-
-ButtonBookmark.propTypes = {
-    experienceId: PropTypes.number
-}
-
-const styles = StyleSheet.create({
-    content: {
-        alignSelf: "flex-end",
-        alignItems: "flex-end",
-        padding: 8
-    },
-    icon: {
-        fontSize: 20
-    }
-});
-```
-
-Likewise, each component includes the reference to the component's own styles using `StyleSheet` within the same file. Using the constant `styles` you can access the styles inside each component.
-
-### Connecting the class components to the store
-
-To connect the Redux store to the UI (components) we use the `connect()` function from **react-redux**. This function provides to the connected component the data it requires from the store, and the functions it can use to send actions to the store. If the component requires the use of an action that handles the state of the application, such as `addBookmark`, we can import the functions that we had already created in the **actions** folder.
-
-```js
-import React from "react";
-import { addBookmark, deleteBookmark } from "@redux/actions/bookmarks";
-import { connect } from "react-redux";
-```
-
-Then we must create the `mapStateToProps` object to specify the properties we want to use from the global state and the `mapDispatchToProps` object to link the imported functions that act on the global state. We can then invoke the `connect` function using these objects as parameters and connect the component (`ButtonBookmark` in this example) to export it. This way you can access the declared properties to read the global state values and the functions to modify the global state.
-
-_/src/components/ButtonBookmark/index.js_
-```js
-import React from "react";
-import PropTypes from "prop-types";
-import { addBookmark, deleteBookmark } from "@redux/actions/bookmarks";
-import { connect } from "react-redux";
-
-class ButtonBookmark extends React.PureComponent {
-    // ...
-}
-
-// ...
-
-const mapStateToProps = state => {
-    return {
-        bookmarks: state.bookmarks,
-        experiences: state.explore.experienceResults.experiences
-    };
-};
-
-const mapDispatchToProps = {
-    addBookmark,
-    deleteBookmark
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ButtonBookmark);
-```
-
-Now within the functions of the component it is possible to access as a property to the global state of `bookmarks` (`this.props.bookmarks`) or `experiences` (`this.props.experiences`). Similarly, the functions `this.props.addBookmark` and `this.props.deleteBookmark` can be accessed as properties.
-
-```js
-render() {
-    const booked = this.props.bookmarks.some(b => b.id == this.props.experienceId);
-    return (
-        <TouchableOpacity
-            style={styles.content}
-            onPress={booked ? this.removeBookmark : this.addBookmark}
-        >
-            <Icon
-                name={booked ? "heart" : "hearto"}
-                color={booked ? Color.heart : Color.background}
-                style={styles.icon}
-            />
-        </TouchableOpacity>
-    );
-}
-
-addBookmark = () => {
-    const experience = this.props.experiences.find(e => e.id == this.props.experienceId);
-    this.props.addBookmark(experience);
-}
-
-removeBookmark = () => {
-    this.props.deleteBookmark(this.props.experienceId)
-}
-```
+As you probably know, React bases its architecture on components. That is: each piece of an app is handled as an isolated component (class or Hook) where its own states, properties, styles and the access to the store are handled. With **Adventure Travel** you have a variety ready-to-use components to create your own mobile application using <u>Hooks</u> approache. Components like `ButtonGradient`, `CardPopular` or `ImageCollage` can be found in the **/src/components** folder. Similarly we have created a folder to organize the components relating to the screens of the app: **/src/screens**. In this way we separate more atomic components like `ButtonGradient` from the more complex ones that compose a screen.
 
 ## Hooks approach
 
-<u>Hooks approach</u>, on the other hand, uses a function as a component with all properties included in a single object in the function parameter.
+<u>Hooks</u> uses a function as a component with all properties included in a single object in the function parameter.
 
-_/src/components/ButtonBookmark/index.js_ (Hooks approach)
+_/src/components/ButtonBookmark/index.js_
 ```js
 import React, {useEffect} from "react";
 
@@ -476,7 +372,7 @@ const styles = StyleSheet.create({
 
 Likewise, each component includes the reference to the component's own styles using `StyleSheet` within the same file. Using the constant `styles` you can access the styles inside each component.
 
-### Connecting the hook components to the store
+### Connecting to the store
 
 To connect the Redux store to the UI (components) we use the `useSelector` and `useDispatch` hooks from **react-redux**. The `useSelector` function provides to the component the data it requires from the store, and the `useDispatch` function it's used to send (dispatch) actions to the store. If the component requires the use of an action that handles the state of the application, such as `ADD_BOOKMARK`, you can import it from the **reducers** folder.
 
